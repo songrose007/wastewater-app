@@ -1,0 +1,141 @@
+# 排放标准知识库
+# 工程师可直接编辑此文件添加/修改标准
+
+standards:
+  - id: GB18918-2002
+    name_zh: "城镇污水处理厂污染物排放标准 (GB 18918-2002)"
+    categories:
+      - grade: "1A"
+        name_zh: "一级A标准"
+        limits:
+          COD: { value: 50, unit: "mg/L" }
+          BOD5: { value: 10, unit: "mg/L" }
+          SS: { value: 10, unit: "mg/L" }
+          NH3_N: { value: 5, unit: "mg/L", note: "水温>12°C" }
+          NH3_N_winter: { value: 8, unit: "mg/L", note: "水温<=12°C" }
+          TN: { value: 15, unit: "mg/L" }
+          TP: { value: 0.5, unit: "mg/L" }
+          pH_min: { value: 6, unit: "--" }
+          pH_max: { value: 9, unit: "--" }
+          fecal_coliform: { value: 1000, unit: "个/L" }
+
+      - grade: "1B"
+        name_zh: "一级B标准"
+        limits:
+          COD: { value: 60, unit: "mg/L" }
+          BOD5: { value: 20, unit: "mg/L" }
+          SS: { value: 20, unit: "mg/L" }
+          NH3_N: { value: 8, unit: "mg/L", note: "水温>12°C" }
+          NH3_N_winter: { value: 15, unit: "mg/L", note: "水温<=12°C" }
+          TN: { value: 20, unit: "mg/L" }
+          TP: { value: 1.0, unit: "mg/L" }
+          pH_min: { value: 6, unit: "--" }
+          pH_max: { value: 9, unit: "--" }
+          fecal_coliform: { value: 10000, unit: "个/L" }
+
+      - grade: "2"
+        name_zh: "二级标准"
+        limits:
+          COD: { value: 100, unit: "mg/L" }
+          BOD5: { value: 30, unit: "mg/L" }
+          SS: { value: 30, unit: "mg/L" }
+          NH3_N: { value: 25, unit: "mg/L", note: "水温>12°C" }
+          NH3_N_winter: { value: 30, unit: "mg/L", note: "水温<=12°C" }
+          TP: { value: 3.0, unit: "mg/L" }
+          pH_min: { value: 6, unit: "--" }
+          pH_max: { value: 9, unit: "--" }
+          fecal_coliform: { value: 10000, unit: "个/L" }
+
+      - grade: "3"
+        name_zh: "三级标准"
+        limits:
+          COD: { value: 120, unit: "mg/L" }
+          BOD5: { value: 60, unit: "mg/L" }
+          SS: { value: 50, unit: "mg/L" }
+          pH_min: { value: 6, unit: "--" }
+          pH_max: { value: 9, unit: "--" }
+
+  - id: GB8978-1996
+    name_zh: "污水综合排放标准 (GB 8978-1996)"
+    categories:
+      - grade: "1"
+        name_zh: "一级标准"
+        limits:
+          COD: { value: 100, unit: "mg/L" }
+          BOD5: { value: 30, unit: "mg/L" }
+          SS: { value: 70, unit: "mg/L" }
+          NH3_N: { value: 15, unit: "mg/L" }
+          TP: { value: 0.5, unit: "mg/L" }
+          pH_min: { value: 6, unit: "--" }
+          pH_max: { value: 9, unit: "--" }
+
+      - grade: "2"
+        name_zh: "二级标准"
+        limits:
+          COD: { value: 150, unit: "mg/L" }
+          BOD5: { value: 60, unit: "mg/L" }
+          SS: { value: 200, unit: "mg/L" }
+          NH3_N: { value: 25, unit: "mg/L" }
+          TP: { value: 1.0, unit: "mg/L" }
+          pH_min: { value: 6, unit: "--" }
+          pH_max: { value: 9, unit: "--" }
+
+      - grade: "3"
+        name_zh: "三级标准"
+        limits:
+          COD: { value: 500, unit: "mg/L" }
+          BOD5: { value: 300, unit: "mg/L" }
+          SS: { value: 400, unit: "mg/L" }
+          pH_min: { value: 6, unit: "--" }
+          pH_max: { value: 9, unit: "--" }
+
+  - id: GB3544-2008
+    name_zh: "制浆造纸工业水污染物排放标准 (GB 3544-2008)"
+    categories:
+      - grade: "new"
+        name_zh: "新建企业标准"
+        limits:
+          COD: { value: 90, unit: "mg/L" }
+          BOD5: { value: 20, unit: "mg/L" }
+          SS: { value: 30, unit: "mg/L" }
+          NH3_N: { value: 8, unit: "mg/L" }
+          TN: { value: 12, unit: "mg/L" }
+          TP: { value: 0.5, unit: "mg/L" }
+          pH_min: { value: 6, unit: "--" }
+          pH_max: { value: 9, unit: "--" }
+
+  - id: GB4287-2012
+    name_zh: "纺织染整工业水污染物排放标准 (GB 4287-2012)"
+    categories:
+      - grade: "new"
+        name_zh: "新建企业标准"
+        limits:
+          COD: { value: 80, unit: "mg/L" }
+          BOD5: { value: 20, unit: "mg/L" }
+          SS: { value: 50, unit: "mg/L" }
+          NH3_N: { value: 10, unit: "mg/L" }
+          TN: { value: 15, unit: "mg/L" }
+          TP: { value: 0.5, unit: "mg/L" }
+          color: { value: 50, unit: "times" }
+          pH_min: { value: 6, unit: "--" }
+          pH_max: { value: 9, unit: "--" }
+
+  - id: GB21900-2008
+    name_zh: "电镀污染物排放标准 (GB 21900-2008)"
+    categories:
+      - grade: "new"
+        name_zh: "新建企业标准"
+        limits:
+          COD: { value: 80, unit: "mg/L" }
+          SS: { value: 50, unit: "mg/L" }
+          NH3_N: { value: 15, unit: "mg/L" }
+          TN: { value: 20, unit: "mg/L" }
+          TP: { value: 1.0, unit: "mg/L" }
+          total_cr: { value: 1.0, unit: "mg/L" }
+          Cr6plus: { value: 0.2, unit: "mg/L" }
+          total_cu: { value: 0.5, unit: "mg/L" }
+          total_zn: { value: 1.5, unit: "mg/L" }
+          total_ni: { value: 0.5, unit: "mg/L" }
+          cyanide: { value: 0.3, unit: "mg/L" }
+          pH_min: { value: 6, unit: "--" }
+          pH_max: { value: 9, unit: "--" }

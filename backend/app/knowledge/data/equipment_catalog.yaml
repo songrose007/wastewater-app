@@ -1,0 +1,1044 @@
+# 污水处理设备选型目录 (Equipment Catalog)
+# 工程师可编辑此文件增删设备型号，调整价格和参数
+# 设备匹配优先级：设计范围内 > 功率效率 > 国产优先 > 低价优先
+
+categories:
+  screens:
+    name_zh: "格栅"
+    equipment_types:
+      coarse_bar_screen:
+        name_zh: "粗格栅（回转式格栅除污机）"
+        primary_param: "flow_rate_m3_d"
+        redundancy_factor: 1.2
+        match_priority: ["in_range", "power_efficiency", "chinese_mfg", "low_price"]
+        models:
+          - model_id: "HGC-600"
+            name_zh: "回转式格栅除污机 HGC-600"
+            flow_range_m3_d: [2000, 8000]
+            bar_spacing_mm: 20
+            channel_width_mm: 600
+            motor_power_kw: 1.1
+            weight_kg: 2500
+            unit_price_cny: 65000
+            manufacturer: "江苏天雨环保集团"
+            is_chinese: true
+          - model_id: "HGC-800"
+            name_zh: "回转式格栅除污机 HGC-800"
+            flow_range_m3_d: [5000, 20000]
+            bar_spacing_mm: 20
+            channel_width_mm: 800
+            motor_power_kw: 1.5
+            weight_kg: 3500
+            unit_price_cny: 85000
+            manufacturer: "江苏天雨环保集团"
+            is_chinese: true
+          - model_id: "HGC-1000"
+            name_zh: "回转式格栅除污机 HGC-1000"
+            flow_range_m3_d: [15000, 40000]
+            bar_spacing_mm: 20
+            channel_width_mm: 1000
+            motor_power_kw: 2.2
+            weight_kg: 5000
+            unit_price_cny: 120000
+            manufacturer: "江苏天雨环保集团"
+            is_chinese: true
+          - model_id: "HGC-1200"
+            name_zh: "回转式格栅除污机 HGC-1200"
+            flow_range_m3_d: [30000, 80000]
+            bar_spacing_mm: 25
+            channel_width_mm: 1200
+            motor_power_kw: 3.0
+            weight_kg: 6800
+            unit_price_cny: 165000
+            manufacturer: "江苏天雨环保集团"
+            is_chinese: true
+
+      fine_bar_screen:
+        name_zh: "细格栅（转鼓式格栅）"
+        primary_param: "flow_rate_m3_d"
+        redundancy_factor: 1.2
+        match_priority: ["in_range", "power_efficiency", "chinese_mfg", "low_price"]
+        models:
+          - model_id: "ZGS-600"
+            name_zh: "转鼓式细格栅 ZGS-600"
+            flow_range_m3_d: [2000, 10000]
+            bar_spacing_mm: 5
+            drum_diameter_mm: 600
+            motor_power_kw: 0.75
+            unit_price_cny: 95000
+            manufacturer: "江苏兆盛环保"
+            is_chinese: true
+          - model_id: "ZGS-800"
+            name_zh: "转鼓式细格栅 ZGS-800"
+            flow_range_m3_d: [8000, 25000]
+            bar_spacing_mm: 5
+            drum_diameter_mm: 800
+            motor_power_kw: 1.1
+            unit_price_cny: 130000
+            manufacturer: "江苏兆盛环保"
+            is_chinese: true
+          - model_id: "ZGS-1000"
+            name_zh: "转鼓式细格栅 ZGS-1000"
+            flow_range_m3_d: [20000, 50000]
+            bar_spacing_mm: 5
+            drum_diameter_mm: 1000
+            motor_power_kw: 1.5
+            unit_price_cny: 175000
+            manufacturer: "江苏兆盛环保"
+            is_chinese: true
+
+      fine_screen_1mm:
+        name_zh: "超细格栅（1mm孔板格栅）"
+        primary_param: "flow_rate_m3_d"
+        redundancy_factor: 1.2
+        match_priority: ["in_range", "chinese_mfg", "low_price"]
+        models:
+          - model_id: "KBG-800"
+            name_zh: "孔板格栅 KBG-800"
+            flow_range_m3_d: [3000, 15000]
+            aperture_mm: 1
+            motor_power_kw: 1.5
+            unit_price_cny: 220000
+            manufacturer: "宜兴华都琥珀"
+            is_chinese: true
+          - model_id: "KBG-1200"
+            name_zh: "孔板格栅 KBG-1200"
+            flow_range_m3_d: [10000, 40000]
+            aperture_mm: 1
+            motor_power_kw: 2.2
+            unit_price_cny: 310000
+            manufacturer: "宜兴华都琥珀"
+            is_chinese: true
+
+  grit_removal:
+    name_zh: "沉砂池设备"
+    equipment_types:
+      aerated_grit:
+        name_zh: "曝气沉砂池系统"
+        primary_param: "flow_rate_m3_d"
+        redundancy_factor: 1.0
+        match_priority: ["in_range", "chinese_mfg", "low_price"]
+        models:
+          - model_id: "APG-5000"
+            name_zh: "曝气沉砂池成套设备 APG-5000"
+            flow_range_m3_d: [2000, 10000]
+            tank_length_m: 12
+            motor_power_kw: 3.0
+            unit_price_cny: 180000
+            manufacturer: "江苏天雨环保集团"
+            is_chinese: true
+          - model_id: "APG-20000"
+            name_zh: "曝气沉砂池成套设备 APG-20000"
+            flow_range_m3_d: [8000, 30000]
+            tank_length_m: 18
+            motor_power_kw: 5.5
+            unit_price_cny: 280000
+            manufacturer: "江苏天雨环保集团"
+            is_chinese: true
+          - model_id: "APG-50000"
+            name_zh: "曝气沉砂池成套设备 APG-50000"
+            flow_range_m3_d: [25000, 80000]
+            tank_length_m: 24
+            motor_power_kw: 7.5
+            unit_price_cny: 420000
+            manufacturer: "江苏天雨环保集团"
+            is_chinese: true
+
+      vortex_grit:
+        name_zh: "旋流沉砂器"
+        primary_param: "flow_rate_m3_d"
+        redundancy_factor: 1.0
+        match_priority: ["in_range", "chinese_mfg", "low_price"]
+        models:
+          - model_id: "XLC-1800"
+            name_zh: "旋流沉砂器 XLC-1800"
+            flow_range_m3_d: [3000, 15000]
+            tank_diameter_m: 1.8
+            motor_power_kw: 1.5
+            unit_price_cny: 120000
+            manufacturer: "江苏一环集团"
+            is_chinese: true
+          - model_id: "XLC-2500"
+            name_zh: "旋流沉砂器 XLC-2500"
+            flow_range_m3_d: [10000, 35000]
+            tank_diameter_m: 2.5
+            motor_power_kw: 2.2
+            unit_price_cny: 185000
+            manufacturer: "江苏一环集团"
+            is_chinese: true
+          - model_id: "XLC-3500"
+            name_zh: "旋流沉砂器 XLC-3500"
+            flow_range_m3_d: [30000, 80000]
+            tank_diameter_m: 3.5
+            motor_power_kw: 3.7
+            unit_price_cny: 260000
+            manufacturer: "江苏一环集团"
+            is_chinese: true
+
+  pumps:
+    name_zh: "泵类"
+    equipment_types:
+      submersible_sewage:
+        name_zh: "潜污泵"
+        primary_param: "flow_rate_m3_h"
+        secondary_param: "head_m"
+        redundancy_factor: 1.5
+        sizing_formula: "motor_power_kw = (Q * H * 9.81) / (3600 * eta_pump * eta_motor)"
+        match_priority: ["in_range", "power_efficiency", "chinese_mfg", "low_price"]
+        models:
+          - model_id: "WQ100-10-5.5"
+            name_zh: "潜水排污泵 WQ100-10-5.5"
+            flow_range_m3_h: [50, 150]
+            head_range_m: [5, 15]
+            motor_power_kw: 5.5
+            efficiency: 0.72
+            unit_price_cny: 8000
+            manufacturer: "上海凯泉泵业"
+            is_chinese: true
+          - model_id: "WQ200-10-11"
+            name_zh: "潜水排污泵 WQ200-10-11"
+            flow_range_m3_h: [150, 300]
+            head_range_m: [5, 15]
+            motor_power_kw: 11
+            efficiency: 0.75
+            unit_price_cny: 18000
+            manufacturer: "上海凯泉泵业"
+            is_chinese: true
+          - model_id: "WQ400-12-22"
+            name_zh: "潜水排污泵 WQ400-12-22"
+            flow_range_m3_h: [300, 550]
+            head_range_m: [8, 18]
+            motor_power_kw: 22
+            efficiency: 0.77
+            unit_price_cny: 32000
+            manufacturer: "上海凯泉泵业"
+            is_chinese: true
+          - model_id: "WQ800-15-55"
+            name_zh: "潜水排污泵 WQ800-15-55"
+            flow_range_m3_h: [550, 1100]
+            head_range_m: [10, 22]
+            motor_power_kw: 55
+            efficiency: 0.79
+            unit_price_cny: 65000
+            manufacturer: "上海凯泉泵业"
+            is_chinese: true
+
+      submersible_sludge:
+        name_zh: "污泥泵"
+        primary_param: "flow_rate_m3_h"
+        secondary_param: "head_m"
+        redundancy_factor: 1.5
+        sizing_formula: "motor_power_kw = (Q * H * 10.5) / (3600 * eta)"
+        match_priority: ["in_range", "chinese_mfg", "low_price"]
+        models:
+          - model_id: "WQK10-10-1.5"
+            name_zh: "污泥泵 WQK10-10-1.5"
+            flow_range_m3_h: [5, 20]
+            head_range_m: [5, 15]
+            motor_power_kw: 1.5
+            efficiency: 0.60
+            unit_price_cny: 4500
+            manufacturer: "上海凯泉泵业"
+            is_chinese: true
+          - model_id: "WQK30-15-5.5"
+            name_zh: "污泥泵 WQK30-15-5.5"
+            flow_range_m3_h: [20, 50]
+            head_range_m: [10, 20]
+            motor_power_kw: 5.5
+            efficiency: 0.65
+            unit_price_cny: 12000
+            manufacturer: "上海凯泉泵业"
+            is_chinese: true
+          - model_id: "WQK60-20-11"
+            name_zh: "污泥泵 WQK60-20-11"
+            flow_range_m3_h: [50, 100]
+            head_range_m: [12, 25]
+            motor_power_kw: 11
+            efficiency: 0.68
+            unit_price_cny: 22000
+            manufacturer: "上海凯泉泵业"
+            is_chinese: true
+
+      chemical_dosing:
+        name_zh: "加药计量泵"
+        primary_param: "flow_rate_l_h"
+        secondary_param: "pressure_mpa"
+        redundancy_factor: 1.33
+        match_priority: ["in_range", "chinese_mfg", "low_price"]
+        models:
+          - model_id: "JBB-50/1.0"
+            name_zh: "机械隔膜计量泵 JBB-50/1.0"
+            flow_range_l_h: [10, 80]
+            pressure_range_mpa: [0.3, 1.0]
+            motor_power_kw: 0.25
+            unit_price_cny: 2800
+            manufacturer: "浙江爱力浦"
+            is_chinese: true
+          - model_id: "JBB-200/0.6"
+            name_zh: "机械隔膜计量泵 JBB-200/0.6"
+            flow_range_l_h: [80, 300]
+            pressure_range_mpa: [0.2, 0.6]
+            motor_power_kw: 0.55
+            unit_price_cny: 4500
+            manufacturer: "浙江爱力浦"
+            is_chinese: true
+          - model_id: "JZ-500/0.4"
+            name_zh: "柱塞式计量泵 JZ-500/0.4"
+            flow_range_l_h: [300, 800]
+            pressure_range_mpa: [0.1, 0.4]
+            motor_power_kw: 1.1
+            unit_price_cny: 8500
+            manufacturer: "浙江爱力浦"
+            is_chinese: true
+
+      clean_water:
+        name_zh: "清水泵（离心泵）"
+        primary_param: "flow_rate_m3_h"
+        secondary_param: "head_m"
+        redundancy_factor: 1.33
+        match_priority: ["in_range", "power_efficiency", "chinese_mfg", "low_price"]
+        models:
+          - model_id: "ISW50-160"
+            name_zh: "单级离心泵 ISW50-160"
+            flow_range_m3_h: [10, 30]
+            head_range_m: [20, 35]
+            motor_power_kw: 4.0
+            efficiency: 0.70
+            unit_price_cny: 3500
+            manufacturer: "上海凯泉泵业"
+            is_chinese: true
+          - model_id: "ISW80-200"
+            name_zh: "单级离心泵 ISW80-200"
+            flow_range_m3_h: [30, 80]
+            head_range_m: [30, 55]
+            motor_power_kw: 15
+            efficiency: 0.74
+            unit_price_cny: 8500
+            manufacturer: "上海凯泉泵业"
+            is_chinese: true
+
+  blowers_aerators:
+    name_zh: "曝气设备"
+    equipment_types:
+      roots_blower:
+        name_zh: "罗茨风机"
+        primary_param: "air_flow_m3_h"
+        secondary_param: "pressure_kpa"
+        redundancy_factor: 1.33
+        sizing_formula: "motor_power_kw = air_flow * pressure / (3600 * eta * 10)"
+        match_priority: ["in_range", "power_efficiency", "chinese_mfg", "low_price"]
+        models:
+          - model_id: "JGR-80"
+            name_zh: "三叶罗茨鼓风机 JGR-80"
+            air_flow_range_m3_h: [250, 600]
+            pressure_range_kpa: [49, 68.6]
+            motor_power_kw: 15
+            efficiency: 0.72
+            unit_price_cny: 25000
+            manufacturer: "山东章鼓"
+            is_chinese: true
+          - model_id: "JGR-100"
+            name_zh: "三叶罗茨鼓风机 JGR-100"
+            air_flow_range_m3_h: [600, 1200]
+            pressure_range_kpa: [49, 68.6]
+            motor_power_kw: 22
+            efficiency: 0.74
+            unit_price_cny: 35000
+            manufacturer: "山东章鼓"
+            is_chinese: true
+          - model_id: "JGR-125"
+            name_zh: "三叶罗茨鼓风机 JGR-125"
+            air_flow_range_m3_h: [1000, 2200]
+            pressure_range_kpa: [49, 68.6]
+            motor_power_kw: 45
+            efficiency: 0.76
+            unit_price_cny: 58000
+            manufacturer: "山东章鼓"
+            is_chinese: true
+          - model_id: "JGR-150"
+            name_zh: "三叶罗茨鼓风机 JGR-150"
+            air_flow_range_m3_h: [2000, 4500]
+            pressure_range_kpa: [49, 68.6]
+            motor_power_kw: 90
+            efficiency: 0.78
+            unit_price_cny: 95000
+            manufacturer: "山东章鼓"
+            is_chinese: true
+
+      centrifugal_blower:
+        name_zh: "空气悬浮离心鼓风机"
+        primary_param: "air_flow_m3_h"
+        secondary_param: "pressure_kpa"
+        redundancy_factor: 1.33
+        match_priority: ["in_range", "power_efficiency", "chinese_mfg", "low_price"]
+        models:
+          - model_id: "ATB-50"
+            name_zh: "空气悬浮鼓风机 ATB-50"
+            air_flow_range_m3_h: [500, 1500]
+            pressure_range_kpa: [49, 98]
+            motor_power_kw: 30
+            efficiency: 0.82
+            unit_price_cny: 180000
+            manufacturer: "石家庄金士顿"
+            is_chinese: true
+          - model_id: "ATB-100"
+            name_zh: "空气悬浮鼓风机 ATB-100"
+            air_flow_range_m3_h: [1500, 3500]
+            pressure_range_kpa: [49, 98]
+            motor_power_kw: 75
+            efficiency: 0.84
+            unit_price_cny: 350000
+            manufacturer: "石家庄金士顿"
+            is_chinese: true
+          - model_id: "ATB-200"
+            name_zh: "空气悬浮鼓风机 ATB-200"
+            air_flow_range_m3_h: [3500, 8000]
+            pressure_range_kpa: [49, 98]
+            motor_power_kw: 160
+            efficiency: 0.86
+            unit_price_cny: 580000
+            manufacturer: "石家庄金士顿"
+            is_chinese: true
+
+      fine_bubble_diffuser:
+        name_zh: "微孔曝气器"
+        primary_param: "air_flow_m3_h"
+        sizing_formula: "quantity = ceil(air_flow_rate / diffuser_capacity)"
+        match_priority: ["in_range", "chinese_mfg", "low_price"]
+        models:
+          - model_id: "KKI-215"
+            name_zh: "盘式微孔曝气器 KKI-215"
+            diffuser_diameter_mm: 215
+            diffuser_capacity_m3_h: 2.5
+            oxygen_transfer_efficiency_pct: 28
+            unit_price_cny: 45
+            manufacturer: "江苏菲力环保"
+            is_chinese: true
+          - model_id: "KKI-300"
+            name_zh: "盘式微孔曝气器 KKI-300"
+            diffuser_diameter_mm: 300
+            diffuser_capacity_m3_h: 4.0
+            oxygen_transfer_efficiency_pct: 32
+            unit_price_cny: 75
+            manufacturer: "江苏菲力环保"
+            is_chinese: true
+          - model_id: "JY-260"
+            name_zh: "管式微孔曝气器 JY-260"
+            tube_length_mm: 1000
+            diffuser_capacity_m3_h: 8.0
+            oxygen_transfer_efficiency_pct: 30
+            unit_price_cny: 120
+            manufacturer: "江苏裕隆环保"
+            is_chinese: true
+
+      surface_aerator:
+        name_zh: "倒伞型表面曝气机"
+        primary_param: "sotr_kg_h"
+        match_priority: ["in_range", "power_efficiency", "chinese_mfg", "low_price"]
+        models:
+          - model_id: "DSB-15"
+            name_zh: "倒伞曝气机 DSB-15"
+            sotr_range_kg_h: [10, 20]
+            impeller_diameter_mm: 1500
+            motor_power_kw: 15
+            unit_price_cny: 65000
+            manufacturer: "江苏一环集团"
+            is_chinese: true
+          - model_id: "DSB-30"
+            name_zh: "倒伞曝气机 DSB-30"
+            sotr_range_kg_h: [20, 40]
+            impeller_diameter_mm: 2000
+            motor_power_kw: 30
+            unit_price_cny: 110000
+            manufacturer: "江苏一环集团"
+            is_chinese: true
+          - model_id: "DSB-55"
+            name_zh: "倒伞曝气机 DSB-55"
+            sotr_range_kg_h: [40, 80]
+            impeller_diameter_mm: 2800
+            motor_power_kw: 55
+            unit_price_cny: 185000
+            manufacturer: "江苏一环集团"
+            is_chinese: true
+
+  mixers:
+    name_zh: "搅拌/推流设备"
+    equipment_types:
+      submersible_mixer:
+        name_zh: "潜水搅拌机"
+        primary_param: "tank_volume_m3"
+        secondary_param: "mixing_power_density_w_m3"
+        sizing_formula: "selected_power_kw = tank_volume * mixing_power_density / 1000"
+        match_priority: ["in_range", "power_efficiency", "chinese_mfg", "low_price"]
+        models:
+          - model_id: "QJB0.85/8-260/3-740"
+            name_zh: "潜水搅拌机 QJB0.85"
+            motor_power_kw: 0.85
+            propeller_diameter_mm: 260
+            suitable_tank_volume_m3: [30, 150]
+            unit_price_cny: 6500
+            manufacturer: "南京蓝深制泵"
+            is_chinese: true
+          - model_id: "QJB1.5/6-260/3-980"
+            name_zh: "潜水搅拌机 QJB1.5"
+            motor_power_kw: 1.5
+            propeller_diameter_mm: 260
+            suitable_tank_volume_m3: [100, 400]
+            unit_price_cny: 9000
+            manufacturer: "南京蓝深制泵"
+            is_chinese: true
+          - model_id: "QJB4/6-320/3-960"
+            name_zh: "潜水搅拌机 QJB4"
+            motor_power_kw: 4.0
+            propeller_diameter_mm: 320
+            suitable_tank_volume_m3: [300, 1200]
+            unit_price_cny: 18000
+            manufacturer: "南京蓝深制泵"
+            is_chinese: true
+          - model_id: "QJB7.5/6-480/3-730"
+            name_zh: "潜水搅拌机 QJB7.5"
+            motor_power_kw: 7.5
+            propeller_diameter_mm: 480
+            suitable_tank_volume_m3: [1000, 3500]
+            unit_price_cny: 32000
+            manufacturer: "南京蓝深制泵"
+            is_chinese: true
+
+      submersible_flow_pusher:
+        name_zh: "潜水推流器"
+        primary_param: "tank_volume_m3"
+        match_priority: ["in_range", "power_efficiency", "chinese_mfg", "low_price"]
+        models:
+          - model_id: "QDT1.5/4-1100/2"
+            name_zh: "低速推流器 QDT1.5"
+            motor_power_kw: 1.5
+            propeller_diameter_mm: 1100
+            suitable_tank_volume_m3: [200, 1000]
+            unit_price_cny: 15000
+            manufacturer: "南京蓝深制泵"
+            is_chinese: true
+          - model_id: "QDT4/4-1800/2"
+            name_zh: "低速推流器 QDT4"
+            motor_power_kw: 4.0
+            propeller_diameter_mm: 1800
+            suitable_tank_volume_m3: [800, 3000]
+            unit_price_cny: 28000
+            manufacturer: "南京蓝深制泵"
+            is_chinese: true
+
+  clarifier_mechanisms:
+    name_zh: "沉淀池刮吸泥机"
+    equipment_types:
+      peripheral_drive:
+        name_zh: "周边传动刮泥机"
+        primary_param: "tank_diameter_m"
+        match_priority: ["in_range", "chinese_mfg", "low_price"]
+        models:
+          - model_id: "ZBG-16"
+            name_zh: "周边传动刮泥机 ZBG-16"
+            tank_diameter_range_m: [12, 18]
+            motor_power_kw: 0.55
+            peripheral_speed_m_min: 2.5
+            unit_price_cny: 120000
+            manufacturer: "江苏天雨环保集团"
+            is_chinese: true
+          - model_id: "ZBG-25"
+            name_zh: "周边传动刮泥机 ZBG-25"
+            tank_diameter_range_m: [18, 30]
+            motor_power_kw: 0.75
+            peripheral_speed_m_min: 3.0
+            unit_price_cny: 195000
+            manufacturer: "江苏天雨环保集团"
+            is_chinese: true
+          - model_id: "ZBG-40"
+            name_zh: "周边传动刮泥机 ZBG-40"
+            tank_diameter_range_m: [30, 45]
+            motor_power_kw: 1.1
+            peripheral_speed_m_min: 3.0
+            unit_price_cny: 320000
+            manufacturer: "江苏天雨环保集团"
+            is_chinese: true
+
+      center_drive:
+        name_zh: "中心传动刮泥机"
+        primary_param: "tank_diameter_m"
+        match_priority: ["in_range", "chinese_mfg", "low_price"]
+        models:
+          - model_id: "ZXG-10"
+            name_zh: "中心传动刮泥机 ZXG-10"
+            tank_diameter_range_m: [6, 12]
+            motor_power_kw: 0.37
+            unit_price_cny: 75000
+            manufacturer: "江苏天雨环保集团"
+            is_chinese: true
+          - model_id: "ZXG-18"
+            name_zh: "中心传动刮泥机 ZXG-18"
+            tank_diameter_range_m: [12, 20]
+            motor_power_kw: 0.55
+            unit_price_cny: 135000
+            manufacturer: "江苏天雨环保集团"
+            is_chinese: true
+
+      suction:
+        name_zh: "周边传动吸泥机"
+        primary_param: "tank_diameter_m"
+        match_priority: ["in_range", "chinese_mfg", "low_price"]
+        models:
+          - model_id: "ZXJ-20"
+            name_zh: "周边传动吸泥机 ZXJ-20"
+            tank_diameter_range_m: [16, 25]
+            motor_power_kw: 1.1
+            unit_price_cny: 210000
+            manufacturer: "江苏天雨环保集团"
+            is_chinese: true
+          - model_id: "ZXJ-35"
+            name_zh: "周边传动吸泥机 ZXJ-35"
+            tank_diameter_range_m: [25, 40]
+            motor_power_kw: 1.5
+            unit_price_cny: 350000
+            manufacturer: "江苏天雨环保集团"
+            is_chinese: true
+          - model_id: "ZXJ-50"
+            name_zh: "周边传动吸泥机 ZXJ-50"
+            tank_diameter_range_m: [40, 55]
+            motor_power_kw: 2.2
+            unit_price_cny: 520000
+            manufacturer: "江苏天雨环保集团"
+            is_chinese: true
+
+  sludge_handling:
+    name_zh: "污泥处理设备"
+    equipment_types:
+      belt_press:
+        name_zh: "带式压滤机"
+        primary_param: "sludge_wet_t_d"
+        match_priority: ["in_range", "chinese_mfg", "low_price"]
+        models:
+          - model_id: "DYL-1000"
+            name_zh: "带式压滤机 DYL-1000"
+            capacity_range_t_d: [3, 10]
+            belt_width_mm: 1000
+            motor_power_kw: 1.5
+            cake_moisture_pct: 80
+            unit_price_cny: 120000
+            manufacturer: "江苏天雨环保集团"
+            is_chinese: true
+          - model_id: "DYL-2000"
+            name_zh: "带式压滤机 DYL-2000"
+            capacity_range_t_d: [8, 25]
+            belt_width_mm: 2000
+            motor_power_kw: 3.0
+            cake_moisture_pct: 80
+            unit_price_cny: 220000
+            manufacturer: "江苏天雨环保集团"
+            is_chinese: true
+          - model_id: "DYL-3000"
+            name_zh: "带式压滤机 DYL-3000"
+            capacity_range_t_d: [20, 50]
+            belt_width_mm: 3000
+            motor_power_kw: 5.5
+            cake_moisture_pct: 80
+            unit_price_cny: 360000
+            manufacturer: "江苏天雨环保集团"
+            is_chinese: true
+
+      centrifuge:
+        name_zh: "卧螺离心脱水机"
+        primary_param: "sludge_wet_t_d"
+        match_priority: ["in_range", "power_efficiency", "chinese_mfg", "low_price"]
+        models:
+          - model_id: "LW350x1550"
+            name_zh: "卧螺离心机 LW350x1550"
+            capacity_range_t_d: [5, 15]
+            drum_diameter_mm: 350
+            motor_power_kw: 22
+            cake_moisture_pct: 78
+            unit_price_cny: 280000
+            manufacturer: "海申机电总厂"
+            is_chinese: true
+          - model_id: "LW500x2000"
+            name_zh: "卧螺离心机 LW500x2000"
+            capacity_range_t_d: [15, 40]
+            drum_diameter_mm: 500
+            motor_power_kw: 45
+            cake_moisture_pct: 78
+            unit_price_cny: 520000
+            manufacturer: "海申机电总厂"
+            is_chinese: true
+          - model_id: "LW650x2600"
+            name_zh: "卧螺离心机 LW650x2600"
+            capacity_range_t_d: [35, 80]
+            drum_diameter_mm: 650
+            motor_power_kw: 90
+            cake_moisture_pct: 78
+            unit_price_cny: 880000
+            manufacturer: "海申机电总厂"
+            is_chinese: true
+
+      screw_press:
+        name_zh: "叠螺脱水机"
+        primary_param: "sludge_wet_t_d"
+        match_priority: ["in_range", "chinese_mfg", "low_price"]
+        models:
+          - model_id: "MDL-201"
+            name_zh: "叠螺脱水机 MDL-201"
+            capacity_range_t_d: [2, 6]
+            motor_power_kw: 1.2
+            cake_moisture_pct: 82
+            unit_price_cny: 85000
+            manufacturer: "江苏博一环保"
+            is_chinese: true
+          - model_id: "MDL-302"
+            name_zh: "叠螺脱水机 MDL-302"
+            capacity_range_t_d: [6, 18]
+            motor_power_kw: 2.5
+            cake_moisture_pct: 82
+            unit_price_cny: 155000
+            manufacturer: "江苏博一环保"
+            is_chinese: true
+          - model_id: "MDL-403"
+            name_zh: "叠螺脱水机 MDL-403"
+            capacity_range_t_d: [15, 35]
+            motor_power_kw: 4.5
+            cake_moisture_pct: 82
+            unit_price_cny: 280000
+            manufacturer: "江苏博一环保"
+            is_chinese: true
+
+      filter_press:
+        name_zh: "板框压滤机"
+        primary_param: "sludge_wet_t_d"
+        match_priority: ["in_range", "chinese_mfg", "low_price"]
+        models:
+          - model_id: "XAZ100/1000-U"
+            name_zh: "厢式压滤机 XAZ100/1000"
+            capacity_range_t_d: [3, 10]
+            filter_area_m2: 100
+            motor_power_kw: 4.0
+            cake_moisture_pct: 65
+            unit_price_cny: 110000
+            manufacturer: "景津装备"
+            is_chinese: true
+          - model_id: "XAZ300/1500-U"
+            name_zh: "厢式压滤机 XAZ300/1500"
+            capacity_range_t_d: [10, 30]
+            filter_area_m2: 300
+            motor_power_kw: 7.5
+            cake_moisture_pct: 65
+            unit_price_cny: 260000
+            manufacturer: "景津装备"
+            is_chinese: true
+
+  chemical_dosing:
+    name_zh: "加药系统"
+    equipment_types:
+      pac_system:
+        name_zh: "PAC加药系统"
+        primary_param: "dosage_rate_kg_h"
+        redundancy_factor: 1.0
+        match_priority: ["in_range", "chinese_mfg", "low_price"]
+        models:
+          - model_id: "JYPAC-100"
+            name_zh: "PAC一体化加药装置 JYPAC-100"
+            dosage_range_kg_h: [5, 30]
+            tank_volume_l: 1000
+            motor_power_kw: 1.5
+            unit_price_cny: 35000
+            manufacturer: "浙江爱力浦"
+            is_chinese: true
+          - model_id: "JYPAC-500"
+            name_zh: "PAC一体化加药装置 JYPAC-500"
+            dosage_range_kg_h: [30, 100]
+            tank_volume_l: 3000
+            motor_power_kw: 3.0
+            unit_price_cny: 65000
+            manufacturer: "浙江爱力浦"
+            is_chinese: true
+          - model_id: "JYPAC-2000"
+            name_zh: "PAC一体化加药装置 JYPAC-2000"
+            dosage_range_kg_h: [100, 300]
+            tank_volume_l: 5000
+            motor_power_kw: 5.5
+            unit_price_cny: 120000
+            manufacturer: "浙江爱力浦"
+            is_chinese: true
+
+      pam_system:
+        name_zh: "PAM加药系统"
+        primary_param: "dosage_rate_kg_h"
+        redundancy_factor: 1.0
+        match_priority: ["in_range", "chinese_mfg", "low_price"]
+        models:
+          - model_id: "JYPAM-50"
+            name_zh: "PAM一体化加药装置 JYPAM-50"
+            dosage_range_kg_h: [2, 15]
+            tank_volume_l: 1000
+            motor_power_kw: 1.5
+            unit_price_cny: 40000
+            manufacturer: "浙江爱力浦"
+            is_chinese: true
+          - model_id: "JYPAM-200"
+            name_zh: "PAM一体化加药装置 JYPAM-200"
+            dosage_range_kg_h: [15, 60]
+            tank_volume_l: 3000
+            motor_power_kw: 3.0
+            unit_price_cny: 75000
+            manufacturer: "浙江爱力浦"
+            is_chinese: true
+
+      disinfectant_system:
+        name_zh: "次氯酸钠加药系统"
+        primary_param: "dosage_rate_kg_h"
+        redundancy_factor: 1.0
+        match_priority: ["in_range", "chinese_mfg", "low_price"]
+        models:
+          - model_id: "JYNaOCl-200"
+            name_zh: "次氯酸钠加药装置 JYNaOCl-200"
+            dosage_range_kg_h: [5, 30]
+            tank_volume_l: 2000
+            motor_power_kw: 1.5
+            unit_price_cny: 45000
+            manufacturer: "浙江爱力浦"
+            is_chinese: true
+          - model_id: "JYNaOCl-1000"
+            name_zh: "次氯酸钠加药装置 JYNaOCl-1000"
+            dosage_range_kg_h: [30, 100]
+            tank_volume_l: 5000
+            motor_power_kw: 3.0
+            unit_price_cny: 85000
+            manufacturer: "浙江爱力浦"
+            is_chinese: true
+
+      carbon_source:
+        name_zh: "碳源投加系统（乙酸钠）"
+        primary_param: "dosage_rate_kg_h"
+        redundancy_factor: 1.0
+        match_priority: ["in_range", "chinese_mfg", "low_price"]
+        models:
+          - model_id: "JYC-500"
+            name_zh: "碳源投加装置 JYC-500"
+            dosage_range_kg_h: [10, 60]
+            tank_volume_l: 5000
+            motor_power_kw: 2.2
+            unit_price_cny: 55000
+            manufacturer: "浙江爱力浦"
+            is_chinese: true
+          - model_id: "JYC-2000"
+            name_zh: "碳源投加装置 JYC-2000"
+            dosage_range_kg_h: [60, 200]
+            tank_volume_l: 10000
+            motor_power_kw: 4.0
+            unit_price_cny: 105000
+            manufacturer: "浙江爱力浦"
+            is_chinese: true
+
+      naoh_system:
+        name_zh: "NaOH加药系统"
+        primary_param: "dosage_rate_kg_h"
+        redundancy_factor: 1.0
+        match_priority: ["in_range", "chinese_mfg", "low_price"]
+        models:
+          - model_id: "JYNaOH-200"
+            name_zh: "NaOH加药装置 JYNaOH-200"
+            dosage_range_kg_h: [5, 30]
+            tank_volume_l: 2000
+            motor_power_kw: 1.5
+            unit_price_cny: 38000
+            manufacturer: "浙江爱力浦"
+            is_chinese: true
+          - model_id: "JYNaOH-1000"
+            name_zh: "NaOH加药装置 JYNaOH-1000"
+            dosage_range_kg_h: [30, 100]
+            tank_volume_l: 5000
+            motor_power_kw: 3.0
+            unit_price_cny: 72000
+            manufacturer: "浙江爱力浦"
+            is_chinese: true
+
+  mbr_membranes:
+    name_zh: "MBR膜组件"
+    equipment_types:
+      hollow_fiber:
+        name_zh: "中空纤维MBR膜"
+        primary_param: "membrane_area_m2"
+        sizing_formula: "num_modules = ceil(total_membrane_area / module_area)"
+        redundancy_factor: 1.0
+        match_priority: ["in_range", "chinese_mfg", "low_price"]
+        models:
+          - model_id: "SMM-1010"
+            name_zh: "中空纤维膜组件 SMM-1010"
+            module_area_m2: 25
+            pore_size_um: 0.04
+            material: "PVDF"
+            design_flux_lmh: 15
+            unit_price_cny: 8000
+            membrane_life_years: 5
+            manufacturer: "北京赛诺膜技术"
+            is_chinese: true
+          - model_id: "MEM-1500"
+            name_zh: "中空纤维膜组件 MEM-1500"
+            module_area_m2: 35
+            pore_size_um: 0.04
+            material: "PVDF"
+            design_flux_lmh: 15
+            unit_price_cny: 11000
+            membrane_life_years: 5
+            manufacturer: "天津膜天膜科技"
+            is_chinese: true
+
+      flat_sheet:
+        name_zh: "平板MBR膜"
+        primary_param: "membrane_area_m2"
+        sizing_formula: "num_modules = ceil(total_membrane_area / module_area)"
+        redundancy_factor: 1.0
+        match_priority: ["in_range", "chinese_mfg", "low_price"]
+        models:
+          - model_id: "FSM-1.5"
+            name_zh: "平板膜元件 FSM-1.5"
+            module_area_m2: 1.5
+            pore_size_um: 0.08
+            material: "PTFE/PVDF"
+            design_flux_lmh: 18
+            unit_price_cny: 650
+            membrane_life_years: 7
+            manufacturer: "江苏沛尔膜业"
+            is_chinese: true
+
+  uv_disinfection:
+    name_zh: "紫外消毒设备"
+    equipment_types:
+      open_channel:
+        name_zh: "明渠式紫外消毒"
+        primary_param: "flow_rate_m3_d"
+        match_priority: ["in_range", "power_efficiency", "chinese_mfg", "low_price"]
+        models:
+          - model_id: "UV-5000"
+            name_zh: "明渠紫外消毒模块 UV-5000"
+            flow_range_m3_d: [2000, 10000]
+            lamp_power_kw: 3.2
+            num_lamps: 24
+            unit_price_cny: 95000
+            manufacturer: "福建新大陆环保"
+            is_chinese: true
+          - model_id: "UV-20000"
+            name_zh: "明渠紫外消毒模块 UV-20000"
+            flow_range_m3_d: [8000, 30000]
+            lamp_power_kw: 6.4
+            num_lamps: 48
+            unit_price_cny: 175000
+            manufacturer: "福建新大陆环保"
+            is_chinese: true
+          - model_id: "UV-50000"
+            name_zh: "明渠紫外消毒模块 UV-50000"
+            flow_range_m3_d: [25000, 80000]
+            lamp_power_kw: 12.8
+            num_lamps: 96
+            unit_price_cny: 320000
+            manufacturer: "福建新大陆环保"
+            is_chinese: true
+
+  instruments:
+    name_zh: "仪表与自控"
+    equipment_types:
+      flow_meter:
+        name_zh: "电磁流量计"
+        primary_param: "pipe_diameter_mm"
+        match_priority: ["in_range", "chinese_mfg", "low_price"]
+        models:
+          - model_id: "EMF-DN200"
+            name_zh: "电磁流量计 DN200"
+            pipe_diameter_range_mm: [150, 300]
+            accuracy_pct: 0.5
+            unit_price_cny: 8000
+            manufacturer: "上海光华仪表"
+            is_chinese: true
+          - model_id: "EMF-DN400"
+            name_zh: "电磁流量计 DN400"
+            pipe_diameter_range_mm: [300, 500]
+            accuracy_pct: 0.5
+            unit_price_cny: 12000
+            manufacturer: "上海光华仪表"
+            is_chinese: true
+          - model_id: "EMF-DN800"
+            name_zh: "电磁流量计 DN800"
+            pipe_diameter_range_mm: [600, 1000]
+            accuracy_pct: 0.5
+            unit_price_cny: 22000
+            manufacturer: "上海光华仪表"
+            is_chinese: true
+
+      do_probe:
+        name_zh: "溶解氧仪"
+        primary_param: "quantity"
+        match_priority: ["chinese_mfg", "low_price"]
+        models:
+          - model_id: "DO-2000"
+            name_zh: "荧光法溶解氧仪 DO-2000"
+            measure_range_mg_l: [0, 20]
+            accuracy_mg_l: 0.1
+            unit_price_cny: 12000
+            manufacturer: "哈希水质（中国）"
+            is_chinese: true
+
+      ph_probe:
+        name_zh: "pH在线监测仪"
+        primary_param: "quantity"
+        match_priority: ["chinese_mfg", "low_price"]
+        models:
+          - model_id: "pH-3000"
+            name_zh: "pH在线监测仪 pH-3000"
+            measure_range: [0, 14]
+            accuracy: 0.05
+            unit_price_cny: 5000
+            manufacturer: "上海雷磁"
+            is_chinese: true
+
+      mlss_probe:
+        name_zh: "污泥浓度计"
+        primary_param: "quantity"
+        match_priority: ["chinese_mfg", "low_price"]
+        models:
+          - model_id: "MLSS-500"
+            name_zh: "悬浮物浓度计 MLSS-500"
+            measure_range_mg_l: [0, 25000]
+            accuracy_pct: 2
+            unit_price_cny: 18000
+            manufacturer: "哈希水质（中国）"
+            is_chinese: true
+
+      orp_probe:
+        name_zh: "ORP在线监测仪"
+        primary_param: "quantity"
+        match_priority: ["chinese_mfg", "low_price"]
+        models:
+          - model_id: "ORP-200"
+            name_zh: "ORP在线监测仪 ORP-200"
+            measure_range_mv: [-2000, 2000]
+            accuracy_mv: 5
+            unit_price_cny: 6000
+            manufacturer: "上海雷磁"
+            is_chinese: true
+
+      plc_cabinet:
+        name_zh: "PLC控制柜"
+        primary_param: "project_scale"
+        match_priority: ["in_range", "chinese_mfg", "low_price"]
+        models:
+          - model_id: "PLC-S-200"
+            name_zh: "PLC控制柜 PLC-S-200（小型污水厂）"
+            io_points: 200
+            unit_price_cny: 65000
+            manufacturer: "北京和利时"
+            is_chinese: true
+          - model_id: "PLC-M-500"
+            name_zh: "PLC控制柜 PLC-M-500（中型污水厂）"
+            io_points: 500
+            unit_price_cny: 120000
+            manufacturer: "北京和利时"
+            is_chinese: true
+          - model_id: "PLC-L-1000"
+            name_zh: "PLC控制柜 PLC-L-1000（大型污水厂）"
+            io_points: 1000
+            unit_price_cny: 220000
+            manufacturer: "北京和利时"
+            is_chinese: true

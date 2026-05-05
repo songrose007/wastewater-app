@@ -1,0 +1,211 @@
+# 工艺模板知识库
+# 预定义的标准工艺路线，工艺选择引擎从中推荐
+# 工程师可添加新工艺模板
+
+templates:
+  # ==================== 生活污水工艺 ====================
+  - id: conventional_as
+    name_zh: "常规活性污泥法"
+    description_zh: "格栅+沉砂池+初沉池+曝气池+二沉池+消毒"
+    applies_to: [domestic]
+    capabilities:
+      - bod_removal
+      - cod_removal
+      - partial_nitrification
+      - ss_removal
+    units:
+      - { code: coarse_screen, name_zh: "粗格栅", mandatory: true }
+      - { code: fine_screen, name_zh: "细格栅", mandatory: true }
+      - { code: grit_chamber, name_zh: "沉砂池", mandatory: true }
+      - { code: primary_clarifier, name_zh: "初沉池", mandatory: false }
+      - { code: aeration_tank, name_zh: "曝气池", mandatory: true }
+      - { code: secondary_clarifier, name_zh: "二沉池", mandatory: true }
+      - { code: disinfection, name_zh: "消毒池", mandatory: true }
+      - { code: sludge_thickening, name_zh: "污泥浓缩池", mandatory: true }
+      - { code: sludge_dewatering, name_zh: "污泥脱水间", mandatory: true }
+
+  - id: a2o
+    name_zh: "A²/O工艺 (厌氧-缺氧-好氧)"
+    description_zh: "格栅+沉砂池+初沉池+厌氧池+缺氧池+好氧池+二沉池+消毒，同步脱氮除磷"
+    applies_to: [domestic]
+    capabilities:
+      - bod_removal
+      - cod_removal
+      - nitrification
+      - denitrification
+      - enhanced_bio_phosphorus_removal
+      - ss_removal
+    units:
+      - { code: coarse_screen, name_zh: "粗格栅", mandatory: true }
+      - { code: fine_screen, name_zh: "细格栅", mandatory: true }
+      - { code: grit_chamber, name_zh: "沉砂池", mandatory: true }
+      - { code: primary_clarifier, name_zh: "初沉池", mandatory: false }
+      - { code: anaerobic_tank, name_zh: "厌氧池", mandatory: true }
+      - { code: anoxic_tank, name_zh: "缺氧池", mandatory: true }
+      - { code: aeration_tank, name_zh: "好氧池", mandatory: true }
+      - { code: secondary_clarifier, name_zh: "二沉池", mandatory: true }
+      - { code: disinfection, name_zh: "消毒池", mandatory: true }
+      - { code: chemical_p_removal, name_zh: "化学除磷(备用)", mandatory: false }
+      - { code: sludge_thickening, name_zh: "污泥浓缩池", mandatory: true }
+      - { code: sludge_dewatering, name_zh: "污泥脱水间", mandatory: true }
+
+  - id: inverted_a2o
+    name_zh: "倒置A²/O工艺 (缺氧-厌氧-好氧)"
+    description_zh: "格栅+沉砂池+缺氧池+厌氧池+好氧池+二沉池+消毒，碳源利用率更优"
+    applies_to: [domestic]
+    capabilities:
+      - bod_removal
+      - cod_removal
+      - nitrification
+      - denitrification
+      - enhanced_bio_phosphorus_removal
+      - ss_removal
+    units:
+      - { code: coarse_screen, name_zh: "粗格栅", mandatory: true }
+      - { code: fine_screen, name_zh: "细格栅", mandatory: true }
+      - { code: grit_chamber, name_zh: "沉砂池", mandatory: true }
+      - { code: primary_clarifier, name_zh: "初沉池", mandatory: false }
+      - { code: anoxic_tank, name_zh: "缺氧池", mandatory: true }
+      - { code: anaerobic_tank, name_zh: "厌氧池", mandatory: true }
+      - { code: aeration_tank, name_zh: "好氧池", mandatory: true }
+      - { code: secondary_clarifier, name_zh: "二沉池", mandatory: true }
+      - { code: disinfection, name_zh: "消毒池", mandatory: true }
+      - { code: sludge_thickening, name_zh: "污泥浓缩池", mandatory: true }
+      - { code: sludge_dewatering, name_zh: "污泥脱水间", mandatory: true }
+
+  - id: sbr
+    name_zh: "SBR工艺 (序批式活性污泥法)"
+    description_zh: "格栅+沉砂池+SBR反应池+消毒，占地少，运行灵活"
+    applies_to: [domestic]
+    capabilities:
+      - bod_removal
+      - cod_removal
+      - nitrification
+      - denitrification
+      - bio_phosphorus_removal
+      - ss_removal
+    units:
+      - { code: coarse_screen, name_zh: "粗格栅", mandatory: true }
+      - { code: fine_screen, name_zh: "细格栅", mandatory: true }
+      - { code: grit_chamber, name_zh: "沉砂池", mandatory: true }
+      - { code: sbr_reactor, name_zh: "SBR反应池", mandatory: true }
+      - { code: disinfection, name_zh: "消毒池", mandatory: true }
+      - { code: sludge_dewatering, name_zh: "污泥脱水间", mandatory: true }
+
+  - id: mbr
+    name_zh: "MBR工艺 (膜生物反应器)"
+    description_zh: "细格栅+沉砂池+缺氧池+MBR好氧池+消毒，出水水质极佳，占地省"
+    applies_to: [domestic, textile_dyeing]
+    capabilities:
+      - bod_removal
+      - cod_removal
+      - nitrification
+      - denitrification
+      - bio_phosphorus_removal
+      - ss_removal
+      - high_quality_effluent
+    units:
+      - { code: fine_screen_1mm, name_zh: "细格栅(1mm)", mandatory: true }
+      - { code: grit_chamber, name_zh: "沉砂池", mandatory: true }
+      - { code: anoxic_tank, name_zh: "缺氧池", mandatory: true }
+      - { code: mbr_tank, name_zh: "MBR好氧池", mandatory: true }
+      - { code: disinfection, name_zh: "消毒池", mandatory: false }
+      - { code: sludge_dewatering, name_zh: "污泥脱水间", mandatory: true }
+
+  - id: oxidation_ditch
+    name_zh: "氧化沟工艺"
+    description_zh: "格栅+沉砂池+氧化沟+二沉池+消毒，运行稳定，耐冲击负荷"
+    applies_to: [domestic]
+    capabilities:
+      - bod_removal
+      - cod_removal
+      - nitrification
+      - denitrification
+      - partial_bio_p_removal
+      - ss_removal
+    units:
+      - { code: coarse_screen, name_zh: "粗格栅", mandatory: true }
+      - { code: fine_screen, name_zh: "细格栅", mandatory: true }
+      - { code: grit_chamber, name_zh: "沉砂池", mandatory: true }
+      - { code: oxidation_ditch, name_zh: "氧化沟", mandatory: true }
+      - { code: secondary_clarifier, name_zh: "二沉池", mandatory: true }
+      - { code: disinfection, name_zh: "消毒池", mandatory: true }
+      - { code: sludge_dewatering, name_zh: "污泥脱水间", mandatory: true }
+
+  # ==================== 工业废水工艺 ====================
+  - id: textile_standard
+    name_zh: "印染废水标准处理工艺"
+    description_zh: "格栅+调节池+混凝反应池+初沉池+水解酸化+接触氧化+二沉池+高级氧化(备用)"
+    applies_to: [textile_dyeing]
+    capabilities:
+      - cod_removal
+      - color_removal
+      - ss_removal
+      - partial_nitrification
+    units:
+      - { code: coarse_screen, name_zh: "格栅", mandatory: true }
+      - { code: equalization_tank, name_zh: "调节池", mandatory: true }
+      - { code: coagulation_tank, name_zh: "混凝反应池", mandatory: true }
+      - { code: primary_clarifier, name_zh: "初沉池", mandatory: true }
+      - { code: hydrolysis_acidification, name_zh: "水解酸化池", mandatory: true }
+      - { code: contact_oxidation, name_zh: "接触氧化池", mandatory: true }
+      - { code: secondary_clarifier, name_zh: "二沉池", mandatory: true }
+      - { code: advanced_oxidation, name_zh: "高级氧化(备用)", mandatory: false }
+      - { code: sludge_dewatering, name_zh: "污泥脱水间", mandatory: true }
+
+  - id: electroplating_standard
+    name_zh: "电镀废水分类处理工艺"
+    description_zh: "分类收集+破氰池(含氰)+铬还原池(含铬)+化学沉淀池+混凝反应池+斜管沉淀池+砂滤池+离子交换(备用)"
+    applies_to: [electroplating]
+    capabilities:
+      - heavy_metal_removal
+      - cod_removal
+      - cyanide_removal
+    units:
+      - { code: cyanide_oxidation, name_zh: "破氰池", mandatory: false }
+      - { code: chromium_reduction, name_zh: "铬还原池", mandatory: false }
+      - { code: chemical_precipitation, name_zh: "化学沉淀池", mandatory: true }
+      - { code: coagulation_tank, name_zh: "混凝反应池", mandatory: true }
+      - { code: tube_settler, name_zh: "斜管沉淀池", mandatory: true }
+      - { code: sand_filter, name_zh: "砂滤池", mandatory: true }
+      - { code: ion_exchange, name_zh: "离子交换(备用)", mandatory: false }
+      - { code: filter_press, name_zh: "板框压滤机", mandatory: true }
+
+  - id: food_processing_standard
+    name_zh: "食品废水标准处理工艺"
+    description_zh: "格栅+隔油池+调节池+气浮(DAF)+UASB厌氧+好氧+二沉池+消毒"
+    applies_to: [food_processing]
+    capabilities:
+      - bod_removal
+      - cod_removal
+      - oil_grease_removal
+      - nitrification
+      - ss_removal
+    units:
+      - { code: coarse_screen, name_zh: "格栅", mandatory: true }
+      - { code: oil_separator, name_zh: "隔油池", mandatory: false }
+      - { code: equalization_tank, name_zh: "调节池", mandatory: true }
+      - { code: daf, name_zh: "溶气气浮(DAF)", mandatory: false }
+      - { code: uasb, name_zh: "UASB厌氧反应器", mandatory: false }
+      - { code: aeration_tank, name_zh: "好氧池", mandatory: true }
+      - { code: secondary_clarifier, name_zh: "二沉池", mandatory: true }
+      - { code: disinfection, name_zh: "消毒池", mandatory: true }
+      - { code: sludge_dewatering, name_zh: "污泥脱水间", mandatory: true }
+
+  - id: chemical_standard
+    name_zh: "化工废水标准处理工艺"
+    description_zh: "格栅+调节池+铁碳微电解+Fenton高级氧化+中和沉淀+水解酸化+接触氧化+二沉池"
+    applies_to: [chemical]
+    capabilities:
+      - cod_removal
+      - toxicity_reduction
+      - ss_removal
+    units:
+      - { code: coarse_screen, name_zh: "格栅", mandatory: true }
+      - { code: equalization_tank, name_zh: "调节池", mandatory: true }
+      - { code: fenton, name_zh: "Fenton高级氧化", mandatory: true }
+      - { code: neutralization, name_zh: "中和沉淀池", mandatory: true }
+      - { code: hydrolysis_acidification, name_zh: "水解酸化池", mandatory: true }
+      - { code: contact_oxidation, name_zh: "接触氧化池", mandatory: true }
+      - { code: secondary_clarifier, name_zh: "二沉池", mandatory: true }
+      - { code: sludge_dewatering, name_zh: "污泥脱水间", mandatory: true }

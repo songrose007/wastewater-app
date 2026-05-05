@@ -1,0 +1,42 @@
+# ============================================================
+# 污水处理方案生成 — 项目输入模板
+# 填写以下信息后运行 generate_report.py 即可出 DOCX
+# ============================================================
+
+project:
+  name: "内蒙古包头市含铀废水处理工程"
+  location: "内蒙古自治区包头市"
+  wastewater_type: "chemical"       # domestic|textile|electroplating|food|chemical|pharmaceutical|slaughter|paper|other
+  flow_rate_m3_h: 12               # 设计流量 m3/h
+  design_temp: 20                   # 设计水温 ℃
+  target_standard: "GB8978-1996-1"  # 排放标准ID-等级
+
+# ---- 进水水质（mg/L，pH除外）----
+water_quality:
+  ph: 7.5
+  cod: 800
+  bod5: 250
+  ss: 350
+  nh3_n: 200
+  tn: 350
+  tp: 8
+  fluoride: 50      # 氟化物
+  uranium: 15        # 总铀（含铀项目特有）
+  tds: 8000          # 总溶解固体
+  temperature: 25
+
+# ---- 图纸（可选）----
+drawings:
+  plan: "C:/Users/Administrator/Desktop/含铀废水/12th含铀废水处理平面布置图20260430_t3.dwg"
+  # elevation: ""   # 高程图（可选）
+
+# ---- 设备清单（可选）----
+equipment_list: "C:/Users/Administrator/Desktop/含铀废水/含铀废水设备清单20260503.xlsx"
+
+# ---- 可选配置 ----
+options:
+  auto_select_route: true     # 自动选择评分最高的工艺路线
+  include_drawing_analysis: true  # 是否分析图纸
+  include_equipment_selection: true  # 是否进行设备选型
+  include_cost_estimation: true     # 是否进行造价估算
+  output_path: ""             # 留空则自动生成到 reports/ 目录

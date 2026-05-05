@@ -1,0 +1,96 @@
+# 造价估算系数库 (Cost Estimation Factors)
+# 工程师可编辑此文件调整各项费率和单价
+# 所有费用单位为人民币万元，除特殊标注外
+
+capex:
+  civil:
+    description_zh: "土建费用系数"
+    unit_costs_cny_per_m3:
+      aeration_tank: 800
+      anoxic_tank: 800
+      anaerobic_tank: 850
+      oxidation_ditch: 900
+      primary_clarifier: 750
+      secondary_clarifier: 750
+      tube_settler: 700
+      grit_chamber: 900
+      equalization_tank: 700
+      hydrolysis_acidification: 850
+      mbr_tank: 1000
+      uasb: 1200
+      sbr_reactor: 850
+      disinfection_channel: 600
+      coagulation_tank: 650
+      coagulation_sedimentation: 700
+      advanced_oxidation_tank: 800
+      sludge_thickening: 650
+      sludge_dewatering_room: 1200
+      blower_room: 1500
+      chemical_room: 1200
+      control_room: 1800
+      office_building: 2200
+      default: 800
+
+    excavation_depth_factor:
+      threshold_depth_m: 5.0
+      factor_per_m: 0.05
+
+  installation:
+    description_zh: "安装费用系数（占设备费比例）"
+    piping: 0.30
+    electrical: 0.15
+    automation: 0.10
+
+  engineering:
+    description_zh: "设计费"
+    ratio_of_direct_cost: 0.08
+
+  contingency:
+    description_zh: "不可预见费"
+    ratio_of_subtotal: 0.10
+
+opex:
+  energy:
+    description_zh: "电费"
+    electricity_price_cny_per_kwh: 0.80
+    operating_hours_per_year: 8760
+
+  chemical:
+    description_zh: "药剂费"
+    unit_prices_cny_per_kg:
+      PAC: 2.5
+      PAM: 18.0
+      NaOH: 4.0
+      NaOCl: 1.5
+      FeSO4: 0.8
+      FeCl3: 3.0
+      H2O2: 2.0
+      NaHSO3: 3.5
+      CaO: 0.6
+      carbon_source_acetate: 3.5
+      carbon_source_methanol: 3.0
+
+  labor:
+    description_zh: "人工费"
+    operators_per_shift: 2
+    shifts_per_day: 3
+    annual_salary_cny: 80000
+
+  maintenance:
+    description_zh: "维护费"
+    rate_of_equipment_cost: 0.025
+
+  sludge_disposal:
+    description_zh: "污泥处置费"
+    disposal_cost_cny_per_ton: 250
+    cake_solid_content: 0.20
+
+  depreciation:
+    description_zh: "折旧"
+    civil_design_life_years: 30
+    equipment_design_life_years: 15
+
+summary:
+  description_zh: "汇总参数"
+  water_supply_cost_cny_per_m3: 0.30
+  other_misc_rate: 0.05

@@ -1,0 +1,325 @@
+# 设计参数默认值知识库
+# 每个构筑物的设计参数默认值和推荐范围
+# 工程师可直接编辑此文件调整设计参数
+
+calculators:
+  coarse_screen:
+    name_zh: "粗格栅"
+    parameters:
+      bar_spacing: { value: 20, unit: "mm", range: [15, 40] }
+      bar_width: { value: 10, unit: "mm", range: [8, 12] }
+      approach_velocity: { value: 0.8, unit: "m/s", range: [0.6, 1.0] }
+      channel_velocity: { value: 0.6, unit: "m/s", range: [0.4, 0.9] }
+      installation_angle: { value: 60, unit: "degrees", range: [45, 75] }
+
+  fine_screen:
+    name_zh: "细格栅"
+    parameters:
+      bar_spacing: { value: 5, unit: "mm", range: [3, 10] }
+      bar_width: { value: 6, unit: "mm", range: [4, 8] }
+      approach_velocity: { value: 0.8, unit: "m/s", range: [0.6, 1.0] }
+      channel_velocity: { value: 0.6, unit: "m/s", range: [0.4, 0.9] }
+      installation_angle: { value: 60, unit: "degrees", range: [45, 75] }
+
+  fine_screen_1mm:
+    name_zh: "细格栅(1mm)"
+    parameters:
+      bar_spacing: { value: 1, unit: "mm", range: [0.5, 2] }
+      bar_width: { value: 3, unit: "mm", range: [2, 4] }
+      approach_velocity: { value: 0.6, unit: "m/s", range: [0.4, 0.8] }
+      channel_velocity: { value: 0.5, unit: "m/s", range: [0.3, 0.7] }
+      installation_angle: { value: 60, unit: "degrees", range: [45, 75] }
+
+  grit_chamber:
+    name_zh: "沉砂池"
+    parameters:
+      surface_loading_rate: { value: 180, unit: "m3/m2-d", range: [150, 200] }
+      hrt: { value: 30, unit: "s", range: [20, 60] }
+      horizontal_velocity: { value: 0.3, unit: "m/s", range: [0.25, 0.35] }
+      effective_depth: { value: 2.0, unit: "m", range: [1.5, 3.0] }
+
+  primary_clarifier:
+    name_zh: "初沉池"
+    parameters:
+      surface_loading_rate: { value: 1.5, unit: "m3/m2-h", range: [1.0, 2.0] }
+      hrt: { value: 2.0, unit: "h", range: [1.5, 2.5] }
+      effective_depth: { value: 3.0, unit: "m", range: [2.5, 4.0] }
+      ss_removal_efficiency: { value: 0.55, unit: "--", range: [0.40, 0.65] }
+      bod_removal_efficiency: { value: 0.30, unit: "--", range: [0.25, 0.35] }
+      sludge_moisture: { value: 0.97, unit: "--" }
+
+  primary_enhanced:
+    name_zh: "强化初沉池(化学混凝)"
+    parameters:
+      surface_loading_rate: { value: 1.2, unit: "m3/m2-h", range: [0.8, 1.5] }
+      hrt: { value: 2.5, unit: "h", range: [2.0, 3.0] }
+      effective_depth: { value: 3.5, unit: "m", range: [3.0, 4.5] }
+      pac_dosage: { value: 30, unit: "mg/L", range: [15, 50] }
+      ss_removal_efficiency: { value: 0.75, unit: "--", range: [0.60, 0.85] }
+      bod_removal_efficiency: { value: 0.40, unit: "--", range: [0.30, 0.50] }
+      tp_removal_efficiency: { value: 0.70, unit: "--", range: [0.50, 0.85] }
+
+  aeration_tank:
+    name_zh: "曝气池（活性污泥法）"
+    parameters:
+      mlss: { value: 3000, unit: "mg/L", range: [2000, 4000] }
+      mlvss_ratio: { value: 0.7, unit: "--", range: [0.6, 0.8] }
+      f_m_ratio: { value: 0.15, unit: "kgBOD/kgMLSS-d", range: [0.1, 0.25] }
+      srt: { value: 15, unit: "d", range: [10, 25] }
+      sludge_yield: { value: 0.6, unit: "kgVSS/kgBOD", range: [0.4, 0.8] }
+      endogenous_decay: { value: 0.05, unit: "1/d", range: [0.04, 0.075] }
+      oxygen_per_kg_bod: { value: 1.47, unit: "kgO2/kgBOD" }
+      oxygen_per_kg_nh3: { value: 4.57, unit: "kgO2/kgNH3-N" }
+      oxygen_per_kg_mlvss: { value: 0.12, unit: "kgO2/kgMLVSS-d" }
+      oxygen_transfer_efficiency: { value: 0.20, unit: "--", range: [0.15, 0.28] }
+      diffuser_submergence: { value: 5.0, unit: "m", range: [4.0, 6.0] }
+      effective_depth: { value: 5.5, unit: "m", range: [4.0, 6.0] }
+      safety_factor: { value: 1.2, unit: "--", range: [1.1, 1.3] }
+      alpha_factor: { value: 0.85, unit: "--", range: [0.7, 0.95] }
+      beta_factor: { value: 0.95, unit: "--", range: [0.9, 1.0] }
+      design_do: { value: 2.0, unit: "mg/L", range: [1.5, 2.5] }
+      n_trains: { value: 2, unit: "--", range: [1, 4] }
+      l_w_ratio: { value: 5, unit: "--", range: [3, 6] }
+
+  anaerobic_tank:
+    name_zh: "厌氧池 (A2O)"
+    parameters:
+      hrt: { value: 1.5, unit: "h", range: [1.0, 2.0] }
+      effective_depth: { value: 5.5, unit: "m", range: [4.0, 6.0] }
+      mlss: { value: 3500, unit: "mg/L", range: [3000, 4000] }
+
+  anoxic_tank:
+    name_zh: "缺氧池 (A2O)"
+    parameters:
+      hrt: { value: 3.0, unit: "h", range: [2.0, 4.0] }
+      effective_depth: { value: 5.5, unit: "m", range: [4.0, 6.0] }
+      mlss: { value: 3500, unit: "mg/L", range: [3000, 4000] }
+      internal_recycle_ratio: { value: 2.5, unit: "--", range: [2.0, 4.0] }
+      sludge_recycle_ratio: { value: 0.8, unit: "--", range: [0.5, 1.0] }
+      denitrification_rate: { value: 0.04, unit: "kgNO3-N/kgMLSS-d", range: [0.02, 0.06] }
+
+  secondary_clarifier:
+    name_zh: "二沉池"
+    parameters:
+      surface_loading_rate_avg: { value: 0.8, unit: "m3/m2-h", range: [0.6, 1.0] }
+      surface_loading_rate_peak: { value: 1.5, unit: "m3/m2-h", range: [1.2, 2.0] }
+      solid_loading_rate: { value: 120, unit: "kg/m2-d", range: [100, 150] }
+      effective_depth: { value: 3.5, unit: "m", range: [3.0, 4.5] }
+      hrt: { value: 3.0, unit: "h", range: [2.5, 4.0] }
+      weir_loading_rate: { value: 1.5, unit: "L/s-m", range: [1.0, 2.0] }
+      sludge_recycle_ratio: { value: 0.8, unit: "--", range: [0.5, 1.0] }
+
+  sbr_reactor:
+    name_zh: "SBR反应池"
+    parameters:
+      mlss: { value: 3500, unit: "mg/L", range: [2500, 4500] }
+      mlvss_ratio: { value: 0.7, unit: "--", range: [0.6, 0.8] }
+      cycle_time: { value: 6, unit: "h", range: [4, 8] }
+      fill_ratio: { value: 0.3, unit: "--", range: [0.2, 0.4] }
+      cycles_per_day: { value: 4, unit: "--", range: [3, 6] }
+      decant_depth: { value: 1.5, unit: "m", range: [1.0, 2.0] }
+      effective_depth: { value: 5.0, unit: "m", range: [4.0, 6.0] }
+      sludge_yield: { value: 0.6, unit: "kgVSS/kgBOD", range: [0.4, 0.8] }
+      endogenous_decay: { value: 0.05, unit: "1/d", range: [0.04, 0.075] }
+      oxygen_per_kg_bod: { value: 1.47, unit: "kgO2/kgBOD" }
+      oxygen_per_kg_nh3: { value: 4.57, unit: "kgO2/kgNH3-N" }
+      oxygen_transfer_efficiency: { value: 0.20, unit: "--", range: [0.15, 0.28] }
+      diffuser_submergence: { value: 4.5, unit: "m", range: [3.5, 5.5] }
+
+  mbr_tank:
+    name_zh: "MBR好氧池"
+    parameters:
+      mlss: { value: 8000, unit: "mg/L", range: [6000, 12000] }
+      mlvss_ratio: { value: 0.6, unit: "--", range: [0.5, 0.7] }
+      f_m_ratio: { value: 0.10, unit: "kgBOD/kgMLSS-d", range: [0.05, 0.15] }
+      srt: { value: 25, unit: "d", range: [15, 40] }
+      sludge_yield: { value: 0.5, unit: "kgVSS/kgBOD", range: [0.3, 0.6] }
+      endogenous_decay: { value: 0.04, unit: "1/d", range: [0.03, 0.06] }
+      effective_depth: { value: 4.5, unit: "m", range: [3.5, 5.5] }
+      membrane_flux: { value: 15, unit: "L/m2-h", range: [10, 25] }
+      oxygen_per_kg_bod: { value: 1.47, unit: "kgO2/kgBOD" }
+      oxygen_per_kg_nh3: { value: 4.57, unit: "kgO2/kgNH3-N" }
+
+  oxidation_ditch:
+    name_zh: "氧化沟"
+    parameters:
+      mlss: { value: 4000, unit: "mg/L", range: [3000, 5000] }
+      mlvss_ratio: { value: 0.65, unit: "--", range: [0.55, 0.75] }
+      f_m_ratio: { value: 0.08, unit: "kgBOD/kgMLSS-d", range: [0.05, 0.15] }
+      srt: { value: 20, unit: "d", range: [15, 30] }
+      sludge_yield: { value: 0.5, unit: "kgVSS/kgBOD", range: [0.3, 0.6] }
+      endogenous_decay: { value: 0.04, unit: "1/d", range: [0.03, 0.06] }
+      effective_depth: { value: 4.0, unit: "m", range: [3.0, 5.0] }
+      channel_velocity: { value: 0.3, unit: "m/s", range: [0.25, 0.35] }
+      oxygen_transfer_efficiency: { value: 0.22, unit: "--", range: [0.18, 0.28] }
+
+  disinfection:
+    name_zh: "消毒池"
+    parameters:
+      hrt: { value: 30, unit: "min", range: [20, 45] }
+      uv_dosage: { value: 20, unit: "mJ/cm2", range: [15, 30] }
+      chlorine_dosage: { value: 8, unit: "mg/L", range: [5, 15] }
+      effective_depth: { value: 3.0, unit: "m", range: [2.5, 4.0] }
+
+  sludge_thickening:
+    name_zh: "污泥浓缩池"
+    parameters:
+      solid_loading_rate: { value: 30, unit: "kg/m2-d", range: [20, 50] }
+      thickened_sludge_moisture: { value: 0.97, unit: "--", range: [0.96, 0.98] }
+      hrt: { value: 12, unit: "h", range: [10, 16] }
+      effective_depth: { value: 4.0, unit: "m", range: [3.5, 5.0] }
+
+  sludge_dewatering:
+    name_zh: "污泥脱水间"
+    parameters:
+      inlet_moisture: { value: 0.97, unit: "--", range: [0.96, 0.99] }
+      cake_moisture: { value: 0.80, unit: "--", range: [0.75, 0.85] }
+      working_hours: { value: 16, unit: "h/d", range: [8, 24] }
+
+  equalization_tank:
+    name_zh: "调节池"
+    parameters:
+      hrt: { value: 8, unit: "h", range: [6, 12] }
+      effective_depth: { value: 5.0, unit: "m", range: [4.0, 6.0] }
+
+  coagulation_tank:
+    name_zh: "混凝反应池"
+    parameters:
+      pac_dosage: { value: 30, unit: "mg/L", range: [10, 60], note: "以Al2O3计" }
+      pam_dosage: { value: 1.0, unit: "mg/L", range: [0.5, 3.0] }
+      rapid_mix_g: { value: 500, unit: "1/s", range: [300, 800] }
+      rapid_mix_t: { value: 60, unit: "s", range: [30, 120] }
+      floc_g: { value: 50, unit: "1/s", range: [20, 70] }
+      floc_t: { value: 20, unit: "min", range: [15, 30] }
+
+  coagulation_decolorization:
+    name_zh: "混凝脱色池"
+    parameters:
+      pac_dosage: { value: 50, unit: "mg/L", range: [30, 100] }
+      pam_dosage: { value: 2.0, unit: "mg/L", range: [1.0, 5.0] }
+      color_removal: { value: 0.70, unit: "--", range: [0.50, 0.90] }
+      rapid_mix_g: { value: 500, unit: "1/s", range: [300, 800] }
+      rapid_mix_t: { value: 60, unit: "s", range: [30, 120] }
+      floc_g: { value: 50, unit: "1/s", range: [20, 70] }
+      floc_t: { value: 20, unit: "min", range: [15, 30] }
+
+  hydrolysis_acidification:
+    name_zh: "水解酸化池"
+    parameters:
+      hrt: { value: 6, unit: "h", range: [4, 10] }
+      effective_depth: { value: 6.0, unit: "m", range: [5.0, 7.0] }
+      bod5_cod_increase: { value: 0.15, unit: "--", range: [0.05, 0.25] }
+
+  contact_oxidation:
+    name_zh: "接触氧化池"
+    parameters:
+      bod_vol_loading: { value: 1.0, unit: "kgBOD/m3-d", range: [0.5, 1.5] }
+      hrt: { value: 6, unit: "h", range: [4, 8] }
+      effective_depth: { value: 4.5, unit: "m", range: [3.5, 5.5] }
+      oxygen_utilization: { value: 0.15, unit: "--", range: [0.10, 0.20] }
+
+  advanced_oxidation:
+    name_zh: "高级氧化"
+    parameters:
+      fenton_h2o2_dosage: { value: 300, unit: "mg/L", range: [100, 500] }
+      fenton_fe2_dosage: { value: 200, unit: "mg/L", range: [50, 400] }
+      fenton_hrt: { value: 2, unit: "h", range: [1, 4] }
+      fenton_ph: { value: 3.5, unit: "--", range: [3.0, 4.0] }
+      cod_removal_efficiency: { value: 0.50, unit: "--", range: [0.30, 0.70] }
+
+  uasb:
+    name_zh: "UASB厌氧反应器"
+    parameters:
+      cod_vol_loading: { value: 5.0, unit: "kgCOD/m3-d", range: [3.0, 8.0] }
+      upflow_velocity: { value: 0.5, unit: "m/h", range: [0.3, 0.8] }
+      hrt: { value: 12, unit: "h", range: [8, 24] }
+      effective_depth: { value: 6.0, unit: "m", range: [5.0, 8.0] }
+      cod_removal_efficiency: { value: 0.70, unit: "--", range: [0.60, 0.85] }
+      biogas_yield: { value: 0.4, unit: "m3/kgCOD_removed", range: [0.3, 0.5] }
+
+  tube_settler:
+    name_zh: "斜管沉淀池"
+    parameters:
+      surface_loading_rate: { value: 3.0, unit: "m3/m2-h", range: [2.0, 4.0] }
+      hrt: { value: 0.5, unit: "h", range: [0.3, 0.8] }
+      effective_depth: { value: 3.5, unit: "m", range: [3.0, 4.5] }
+
+  chemical_precipitation:
+    name_zh: "化学沉淀池"
+    parameters:
+      surface_loading_rate: { value: 2.0, unit: "m3/m2-h", range: [1.5, 3.0] }
+      hrt: { value: 2.0, unit: "h", range: [1.5, 3.0] }
+      effective_depth: { value: 3.5, unit: "m", range: [3.0, 4.5] }
+      naoh_dosage: { value: 200, unit: "mg/L", range: [100, 400] }
+
+  chromium_reduction:
+    name_zh: "铬还原池"
+    parameters:
+      hrt: { value: 1.0, unit: "h", range: [0.5, 2.0] }
+      ph_control: { value: 2.5, unit: "--", range: [2.0, 3.0] }
+      na2s2o5_dosage_ratio: { value: 4.0, unit: "kg/kgCr", range: [3.0, 5.0] }
+
+  cyanide_oxidation:
+    name_zh: "破氰池"
+    parameters:
+      hrt_stage1: { value: 1.0, unit: "h", range: [0.5, 1.5] }
+      ph_stage1: { value: 10.5, unit: "--", range: [10.0, 11.0] }
+      naclo_dosage_ratio: { value: 7.0, unit: "kg/kgCN", range: [5.0, 10.0] }
+
+  sand_filter:
+    name_zh: "砂滤池"
+    parameters:
+      filtration_rate: { value: 8, unit: "m/h", range: [6, 12] }
+      filter_depth: { value: 1.2, unit: "m", range: [1.0, 1.5] }
+
+  daf:
+    name_zh: "溶气气浮(DAF)"
+    parameters:
+      surface_loading_rate: { value: 5.0, unit: "m3/m2-h", range: [3.0, 8.0] }
+      hrt: { value: 0.5, unit: "h", range: [0.3, 1.0] }
+      recycle_ratio: { value: 0.3, unit: "--", range: [0.2, 0.5] }
+      air_solid_ratio: { value: 0.03, unit: "--", range: [0.01, 0.05] }
+      pac_dosage: { value: 30, unit: "mg/L", range: [15, 50] }
+
+  oil_separator:
+    name_zh: "隔油池"
+    parameters:
+      surface_loading_rate: { value: 2.0, unit: "m3/m2-h", range: [1.5, 3.0] }
+      hrt: { value: 1.5, unit: "h", range: [1.0, 2.0] }
+      effective_depth: { value: 2.5, unit: "m", range: [2.0, 3.0] }
+
+  fenton:
+    name_zh: "Fenton高级氧化"
+    parameters:
+      h2o2_dosage: { value: 300, unit: "mg/L", range: [100, 500] }
+      fe2_dosage: { value: 200, unit: "mg/L", range: [50, 400] }
+      hrt: { value: 2, unit: "h", range: [1, 4] }
+      ph: { value: 3.5, unit: "--", range: [3.0, 4.0] }
+      cod_removal_efficiency: { value: 0.50, unit: "--", range: [0.30, 0.70] }
+
+  neutralization:
+    name_zh: "中和沉淀池"
+    parameters:
+      hrt: { value: 1.0, unit: "h", range: [0.5, 2.0] }
+      effective_depth: { value: 3.5, unit: "m", range: [3.0, 4.5] }
+      ph_target: { value: 7.0, unit: "--", range: [6.5, 8.0] }
+
+  ion_exchange:
+    name_zh: "离子交换"
+    parameters:
+      exchange_velocity: { value: 20, unit: "m/h", range: [15, 30] }
+      bed_depth: { value: 1.5, unit: "m", range: [1.0, 2.0] }
+
+  filter_press:
+    name_zh: "板框压滤机"
+    parameters:
+      filtration_pressure: { value: 1.0, unit: "MPa", range: [0.6, 1.5] }
+      cycle_time: { value: 4, unit: "h", range: [2, 6] }
+      cake_thickness: { value: 30, unit: "mm", range: [20, 40] }
+      cake_moisture: { value: 0.70, unit: "--", range: [0.60, 0.75] }
+
+  chemical_p_removal:
+    name_zh: "化学除磷"
+    parameters:
+      pac_dosage: { value: 20, unit: "mg/L", range: [10, 40] }
+      tp_removal_efficiency: { value: 0.80, unit: "--", range: [0.70, 0.90] }

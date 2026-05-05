@@ -1,0 +1,207 @@
+# 工艺选择规则知识库
+# 每条规则：条件匹配 → 动作（推荐/禁止/加减分）
+# 工程师可直接编辑此文件来调整工艺推荐逻辑
+#
+# condition 支持:
+#   all: [{parameter, operator, value, unit?}]  — 所有条件必须同时满足
+#   any: [{parameter, operator, value, unit?}]  — 任一条件满足
+# operator 支持: '>', '<', '>=', '<=', '==', '!='
+#
+# 衍生参数（由引擎自动计算）:
+#   BOD5_COD_ratio, NH3_N_removal_required, TN_removal_required, TP_removal_required
+
+rules:
+  # ==================== 有机物负荷规则 ====================
+  - id: high_cod_domestic
+    description_zh: "高COD生活污水需要强化一级处理"
+    applies_to: [domestic]
+    priority: 100
+    condition:
+      all:
+        - { parameter: COD, operator: ">", value: 500, unit: "mg/L" }
+    actions:
+      - { type: recommend_unit, unit_code: primary_enhanced, reason_zh: "进水COD>500mg/L，建议设置强化一级处理（化学混凝沉淀）降低后续生物处理负荷", score_add: 15 }
+      - { type: score_adjust, unit_code: conventional_as, score_add: -5, reason_zh: "单纯常规活性污泥法对高浓度进水适应性较差" }
+
+  - id: very_high_cod
+    description_zh: "极高COD需要厌氧预处理"
+    applies_to: [domestic, food_processing, textile_dyeing]
+    priority: 90
+    condition:
+      all:
+        - { parameter: COD, operator: ">=", value: 1000, unit: "mg/L" }
+    actions:
+      - { type: recommend_unit, unit_code: anaerobic_reactor, reason_zh: "COD>=1000mg/L，建议设置厌氧预处理（UASB/EGSB/IC）回收沼气并降低有机负荷", score_add: 20 }
+
+  # ==================== 可生化性规则 ====================
+  - id: low_bod_cod_ratio
+    description_zh: "可生化性差需要物化预处理"
+    applies_to: [all]
+    priority: 85
+    condition:
+      all:
+        - { parameter: BOD5_COD_ratio, operator: "<", value: 0.3 }
+    actions:
+      - { type: recommend_unit, unit_code: advanced_oxidation, reason_zh: "BOD5/COD<0.3，可生化性差，建议设置高级氧化预处理（Fenton/臭氧）提高可生化性", score_add: 20 }
+      - { type: recommend_unit, unit_code: hydrolysis_acidification, reason_zh: "水解酸化可提高难降解有机物的可生化性", score_add: 10 }
+      - { type: score_adjust, unit_code: conventional_as, score_add: -10, reason_zh: "可生化性差时常规活性污泥法效果不佳" }
+
+  - id: good_biodegradability
+    description_zh: "可生化性好，适合生物处理"
+    applies_to: [all]
+    priority: 80
+    condition:
+      all:
+        - { parameter: BOD5_COD_ratio, operator: ">=", value: 0.4 }
+    actions:
+      - { type: score_adjust, unit_code: conventional_as, score_add: 15 }
+      - { type: score_adjust, unit_code: a2o, score_add: 10 }
+      - { type: score_adjust, unit_code: oxidation_ditch, score_add: 10 }
+
+  # ==================== 脱氮除磷规则 ====================
+  - id: ammonia_removal_required
+    description_zh: "需要硝化去除氨氮"
+    applies_to: [all]
+    priority: 95
+    condition:
+      all:
+        - { parameter: NH3_N_removal_required, operator: ">", value: 0 }
+    actions:
+      - { type: require_capability, capability: nitrification, reason_zh: "出水氨氮标准要求进行硝化反应", mandatory: true }
+
+  - id: tn_removal_required
+    description_zh: "需要反硝化脱氮"
+    applies_to: [all]
+    priority: 95
+    condition:
+      all:
+        - { parameter: TN_removal_required, operator: ">", value: 0 }
+    actions:
+      - { type: require_capability, capability: denitrification, reason_zh: "出水总氮标准要求进行反硝化脱氮", mandatory: true }
+
+  - id: tp_removal_required
+    description_zh: "需要除磷"
+    applies_to: [all]
+    priority: 95
+    condition:
+      all:
+        - { parameter: TP_removal_required, operator: ">", value: 0 }
+    actions:
+      - { type: require_capability, capability: phosphorus_removal, reason_zh: "出水总磷标准要求除磷", mandatory: true }
+
+  - id: full_bnr_required
+    description_zh: "同时脱氮除磷推荐A2O或改良工艺"
+    applies_to: [all]
+    priority: 90
+    condition:
+      all:
+        - { parameter: NH3_N_removal_required, operator: ">", value: 0 }
+        - { parameter: TN_removal_required, operator: ">", value: 0 }
+        - { parameter: TP_removal_required, operator: ">", value: 0 }
+    actions:
+      - { type: score_adjust, unit_code: a2o, score_add: 25, reason_zh: "A2O可同步脱氮除磷，是首选工艺" }
+      - { type: score_adjust, unit_code: inverted_a2o, score_add: 20 }
+      - { type: score_adjust, unit_code: mbr, score_add: 15, reason_zh: "MBR+生化池可实现同步脱氮除磷" }
+      - { type: score_adjust, unit_code: conventional_as, score_add: -15, reason_zh: "常规活性污泥法无脱氮除磷功能" }
+
+  # ==================== 水量规模规则 ====================
+  - id: small_scale_plant
+    description_zh: "小型污水处理厂推荐一体化设备"
+    applies_to: [domestic]
+    priority: 70
+    condition:
+      all:
+        - { parameter: flow_rate, operator: "<", value: 5000, unit: "m3/d" }
+    actions:
+      - { type: score_adjust, unit_code: sbr, score_add: 15, reason_zh: "SBR适合小型污水厂，占地少，运行灵活" }
+      - { type: score_adjust, unit_code: mbr, score_add: 15, reason_zh: "MBR适合小型污水厂，出水水质好，占地极省" }
+      - { type: score_adjust, unit_code: a2o, score_add: -5, reason_zh: "A2O在小规模下运行管理相对复杂" }
+
+  - id: large_scale_plant
+    description_zh: "大型污水处理厂推荐连续流工艺"
+    applies_to: [domestic]
+    priority: 70
+    condition:
+      all:
+        - { parameter: flow_rate, operator: ">=", value: 50000, unit: "m3/d" }
+    actions:
+      - { type: score_adjust, unit_code: a2o, score_add: 10, reason_zh: "A2O适合大型污水厂连续运行" }
+      - { type: score_adjust, unit_code: oxidation_ditch, score_add: 10, reason_zh: "氧化沟适合大中型污水厂" }
+      - { type: score_adjust, unit_code: sbr, score_add: -10, reason_zh: "SBR在超大规模应用中运行管理复杂" }
+
+  # ==================== 印染废水 ====================
+  - id: textile_high_color
+    description_zh: "印染废水高色度需要脱色处理"
+    applies_to: [textile_dyeing]
+    priority: 95
+    condition:
+      all:
+        - { parameter: color, operator: ">=", value: 200, unit: "times" }
+    actions:
+      - { type: recommend_unit, unit_code: coagulation_decolorization, reason_zh: "色度>=200倍，建议设置混凝脱色单元", score_add: 25, mandatory: true }
+
+  - id: textile_salt
+    description_zh: "印染废水含盐量高需考虑耐盐菌"
+    applies_to: [textile_dyeing]
+    priority: 80
+    condition:
+      any:
+        - { parameter: conductivity, operator: ">=", value: 5000, unit: "us/cm" }
+        - { parameter: chloride, operator: ">=", value: 1000, unit: "mg/L" }
+    actions:
+      - { type: recommend_unit, unit_code: halotolerant_bio, reason_zh: "含盐量较高，建议采用耐盐菌生物处理或水解酸化+接触氧化组合工艺", score_add: 15 }
+
+  # ==================== 电镀废水 ====================
+  - id: electroplating_cr6
+    description_zh: "含铬电镀废水需还原+沉淀"
+    applies_to: [electroplating]
+    priority: 98
+    condition:
+      all:
+        - { parameter: Cr6plus, operator: ">", value: 0.1, unit: "mg/L" }
+    actions:
+      - { type: require_unit, unit_code: chromium_reduction, reason_zh: "含六价铬，必须设置还原+化学沉淀预处理", mandatory: true }
+      - { type: require_unit, unit_code: chemical_precipitation, reason_zh: "重金属需要化学沉淀去除", mandatory: true }
+
+  - id: electroplating_cn
+    description_zh: "含氰电镀废水需破氰处理"
+    applies_to: [electroplating]
+    priority: 98
+    condition:
+      all:
+        - { parameter: cyanide, operator: ">", value: 0.1, unit: "mg/L" }
+    actions:
+      - { type: require_unit, unit_code: cyanide_oxidation, reason_zh: "含氰化物，必须设置两级破氰处理（碱性氯化法）", mandatory: true }
+
+  # ==================== 食品废水 ====================
+  - id: food_high_oil
+    description_zh: "食品废水高油脂需气浮预处理"
+    applies_to: [food_processing]
+    priority: 90
+    condition:
+      all:
+        - { parameter: oil_grease, operator: ">=", value: 100, unit: "mg/L" }
+    actions:
+      - { type: recommend_unit, unit_code: daf, reason_zh: "油脂>=100mg/L，建议设置溶气气浮(DAF)预处理", score_add: 20 }
+
+  - id: food_high_organic
+    description_zh: "食品废水高有机负荷适合厌氧处理"
+    applies_to: [food_processing]
+    priority: 85
+    condition:
+      all:
+        - { parameter: COD, operator: ">=", value: 2000, unit: "mg/L" }
+    actions:
+      - { type: recommend_unit, unit_code: uasb, reason_zh: "COD>=2000mg/L，建议采用UASB厌氧反应器+好氧组合工艺", score_add: 25 }
+
+  # ==================== 低温规则 ====================
+  - id: low_temperature
+    description_zh: "低温条件下需延长SRT/HRT"
+    applies_to: [all]
+    priority: 75
+    condition:
+      all:
+        - { parameter: design_temp_min, operator: "<", value: 12 }
+    actions:
+      - { type: score_adjust, unit_code: mbr, score_add: 15, reason_zh: "MBR在低温下可维持高MLSS，出水水质稳定" }
+      - { type: score_adjust, unit_code: conventional_as, score_add: -10, reason_zh: "低温会严重抑制常规活性污泥法硝化效果" }
