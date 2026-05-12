@@ -10,6 +10,7 @@ import DrawingUploadPage from './pages/DrawingUploadPage'
 import DrawingMappingPage from './pages/DrawingMappingPage'
 import VerificationPage from './pages/VerificationPage'
 import ReportPage from './pages/ReportPage'
+import SchemeWizardPage from './pages/SchemeWizardPage'
 
 export default function App() {
   return (
@@ -19,6 +20,7 @@ export default function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/projects/new" element={<ProjectNewPage />} />
           <Route path="/projects/:id" element={<InputPage />} />
+          <Route path="/projects/:id/scheme" element={<SchemeWizardPage />} />
           <Route path="/projects/:id/process" element={<ProcessSelectionPage />} />
           <Route path="/projects/:id/calculation" element={<CalculationPage />} />
           <Route path="/projects/:id/drawings" element={<DrawingUploadPage />} />

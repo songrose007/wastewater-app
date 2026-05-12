@@ -23,15 +23,19 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
+def _cors_origins() -> list[str]:
+    return [origin.strip() for origin in settings.CORS_ORIGINS.split(",") if origin.strip()]
+
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://localhost:3000", "*"],
+    allow_origins=_cors_origins(),
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-from app.api import projects, water_quality, process_selection, calculation, standards, report, equipment, cost, design_params, presets, drawings, verify
+from app.api import projects, water_quality, process_selection, calculation, standards, report, equipment, cost, design_params, presets, drawings, verify, workflow, package
 
 app.include_router(projects.router)
 app.include_router(water_quality.router)
@@ -43,6 +47,8 @@ app.include_router(design_params.router)
 app.include_router(presets.router)
 app.include_router(drawings.router)
 app.include_router(verify.router)
+app.include_router(workflow.router)
+app.include_router(package.router)
 app.include_router(standards.router)
 app.include_router(report.router)
 

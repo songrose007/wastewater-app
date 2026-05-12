@@ -250,6 +250,16 @@ class EquipmentSelector:
         Returns:
             {equipment_list: [...], summary: {total_equipment_cost, by_category: {...}}}
         """
+        if not route_units and not calculation_results:
+            return {
+                "equipment_list": [],
+                "summary": {
+                    "total_equipment_cost": 0,
+                    "by_category": {},
+                    "total_items": 0,
+                },
+            }
+
         calc_by_unit: Dict[str, Dict] = {}
         for cr in calculation_results:
             code = cr.get("calculator_code", "")

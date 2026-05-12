@@ -35,18 +35,7 @@ const TYPE_LABELS: Record<string, string> = {
 }
 
 function getNextPath(project: Project): string {
-  switch (project.status) {
-    case 'draft':
-      return `/projects/${project.id}`
-    case 'water_quality_entered':
-      return `/projects/${project.id}/process`
-    case 'process_selected':
-      return `/projects/${project.id}/calculation`
-    case 'calculated':
-      return `/projects/${project.id}/report`
-    default:
-      return `/projects/${project.id}`
-  }
+  return `/projects/${project.id}/scheme`
 }
 
 export default function HomePage() {

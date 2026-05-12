@@ -170,3 +170,41 @@ export interface PresetCreate {
 
 // Parameter overrides for calculation
 export type ParameterOverrides = Record<string, Record<string, number>>
+
+export type WorkflowStepState = 'pending' | 'active' | 'complete' | 'needs_input' | 'needs_confirmation' | 'action_required' | 'warning' | 'ready' | 'optional'
+
+export interface WorkflowStep {
+  key: string
+  label: string
+  state: WorkflowStepState
+  route: string
+}
+
+export interface WorkflowQuestion {
+  id: string
+  step: string
+  severity: 'blocking' | 'warning' | 'info'
+  type: string
+  message: string
+  route: string
+}
+
+export interface WorkflowState {
+  project_id: string
+  status: Project['status']
+  steps: WorkflowStep[]
+  next_step?: string | null
+  questions: WorkflowQuestion[]
+  blocking_items: WorkflowQuestion[]
+  warnings: WorkflowQuestion[]
+}
+
+export type ReportFormat = 'html' | 'pdf' | 'docx' | 'all'
+
+export interface PackageManifest {
+  project_id: string
+  package_path: string
+  filename: string
+  size_bytes: number
+  created_at: string
+}

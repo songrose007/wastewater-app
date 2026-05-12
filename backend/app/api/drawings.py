@@ -1,4 +1,5 @@
 """图纸上传与解析 API。"""
+import re
 import shutil
 from pathlib import Path
 from fastapi import APIRouter, Depends, HTTPException, UploadFile, File, Form
@@ -16,7 +17,22 @@ from app.config import settings
 
 router = APIRouter(prefix="/api/v1/projects", tags=["drawings"])
 
-UPLOAD_DIR = Path(settings.REPORT_OUTPUT_DIR).parent / "uploads" / "drawings"
+UPLOAD_DIR = Path(settings.UPLOAD_DIR) / "drawings"
+SAFE_NAME_PATTERN = re.compile(r"[^\w\-.一-鿿]+")
+
+
+def _safe_upload_path(project_id: str, filename: str) -> Path:
+    base_name = Path(filename).name
+    safe_name = SAFE_NAME_PATTERN.sub("_", base_name).strip("._")
+    if not safe_name.lower().endswith(".pdf"):
+        raise HTTPException(status_code=400, detail="仅支持PDF格式图纸")
+
+    UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
+    upload_root = UPLOAD_DIR.resolve()
+    file_path = (upload_root / f"{project_id}_{safe_name}").resolve()
+    if upload_root not in file_path.parents:
+        raise HTTPException(status_code=400, detail="图纸文件名无效")
+    return file_path
 
 
 @router.post("/{project_id}/drawings/upload")
@@ -35,9 +51,7 @@ def upload_drawing(
     if not file.filename or not file.filename.lower().endswith('.pdf'):
         raise HTTPException(status_code=400, detail="仅支持PDF格式图纸")
 
-    UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
-    safe_name = f"{project_id}_{file.filename}"
-    file_path = UPLOAD_DIR / safe_name
+    file_path = _safe_upload_path(project_id, file.filename)
 
     with open(file_path, "wb") as f:
         shutil.copyfileobj(file.file, f)
@@ -118,8 +132,15 @@ def list_drawings(project_id: str, db: Session = Depends(get_db)):
 
 
 @router.get("/{project_id}/drawings/{drawing_id}/elements")
-def get_drawing_elements(drawing_id: int, db: Session = Depends(get_db)):
+def get_drawing_elements(project_id: str, drawing_id: int, db: Session = Depends(get_db)):
     """获取图纸解析出的文字元素列表。"""
+    drawing = db.query(models.Drawing).filter(
+        models.Drawing.id == drawing_id,
+        models.Drawing.project_id == project_id,
+    ).first()
+    if not drawing:
+        raise HTTPException(status_code=404, detail="图纸不存在")
+
     elements = db.query(models.ExtractedElement).filter(
         models.ExtractedElement.drawing_id == drawing_id
     ).order_by(models.ExtractedElement.page_num, models.ExtractedElement.y0).all()

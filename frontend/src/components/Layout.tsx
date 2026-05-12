@@ -6,6 +6,7 @@ const STEPS = [
 
 function getProjectSteps(projectId: string) {
   return [
+    { path: `/projects/${projectId}/scheme`, label: '方案向导' },
     { path: `/projects/${projectId}`, label: '水质输入' },
     { path: `/projects/${projectId}/process`, label: '工艺选择' },
     { path: `/projects/${projectId}/calculation`, label: '设计计算' },

@@ -90,7 +90,20 @@ export const api = {
   deletePreset: (id: number) =>
     request(`/presets/${id}`, { method: 'DELETE' }),
 
+  // Workflow
+  getWorkflow: (projectId: string) =>
+    request(`/projects/${projectId}/workflow`),
+
+  runWorkflowStep: (projectId: string, step: string) =>
+    request(`/projects/${projectId}/workflow/run-step`, {
+      method: 'POST',
+      body: JSON.stringify({ step }),
+    }),
+
   // Report
-  generateReport: (projectId: string) =>
-    request(`/projects/${projectId}/report`, { method: 'POST' }),
+  generateReport: (projectId: string, format: 'html' | 'pdf' | 'docx' | 'all' = 'pdf') =>
+    request(`/projects/${projectId}/report?format=${format}`, { method: 'POST' }),
+
+  packageProject: (projectId: string) =>
+    request(`/projects/${projectId}/package`, { method: 'POST' }),
 };

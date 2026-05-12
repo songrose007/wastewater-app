@@ -14,7 +14,7 @@ export default function ReportPage() {
     setGenerating(true)
     setError('')
     try {
-      await api.generateReport(id)
+      await api.generateReport(id, 'all')
       setReportUrl(`/api/v1/projects/${id}/report/preview`)
     } catch (e) {
       setError((e as Error).message || '生成报告失败')
@@ -23,10 +23,10 @@ export default function ReportPage() {
     }
   }
 
-  const handleDownload = () => {
+  const handleDownload = (format: 'pdf' | 'docx' | 'html') => {
     if (!id) return
     const link = document.createElement('a')
-    link.href = `/api/v1/projects/${id}/report/download`
+    link.href = `/api/v1/projects/${id}/report/download?format=${format}`
     link.download = ''
     document.body.appendChild(link)
     link.click()
@@ -65,13 +65,19 @@ export default function ReportPage() {
         <div className="space-y-4">
           <div className="flex items-center gap-3">
             <button
-              onClick={handleDownload}
+              onClick={() => handleDownload('pdf')}
               className="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary-light transition-colors inline-flex items-center gap-2"
             >
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
               </svg>
               下载 PDF
+            </button>
+            <button
+              onClick={() => handleDownload('docx')}
+              className="px-6 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-500 transition-colors inline-flex items-center gap-2"
+            >
+              下载 DOCX
             </button>
             <button
               onClick={handleGenerate}

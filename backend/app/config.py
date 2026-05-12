@@ -13,6 +13,8 @@ class Settings(BaseSettings):
 
     REPORT_TEMPLATE_DIR: str = str(Path(__file__).parent / "report" / "templates")
     REPORT_OUTPUT_DIR: str = str(Path(__file__).parent.parent / "reports")
+    UPLOAD_DIR: str = str(Path(__file__).parent.parent / "uploads")
+    CORS_ORIGINS: str = "http://localhost:5173,http://localhost:3000"
 
     class Config:
         env_file = ".env"
