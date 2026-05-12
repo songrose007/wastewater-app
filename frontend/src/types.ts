@@ -28,21 +28,27 @@ export interface WaterQualityParams {
 }
 
 export interface ProcessRoute {
-  id: string
-  template_id: string
-  name: string
-  name_zh: string
-  score: number
-  reasons: string[]
-  risks: string[]
+  id?: string
+  template_id?: string
+  route_id?: string
+  name?: string
+  name_zh?: string
+  route_name_zh?: string
+  score?: number
+  total_score?: number
+  reasons?: string[]
+  suitability_reasons?: string[]
+  risks?: string[]
   units: RouteUnit[]
 }
 
 export interface RouteUnit {
   unit_code: string
   unit_name_zh: string
-  order: number
-  mandatory: boolean
+  order?: number
+  sequence?: number
+  mandatory?: boolean
+  is_mandatory?: boolean
 }
 
 export interface CalculationResult {
@@ -60,7 +66,9 @@ export interface CalculationResult {
 
 export interface SelectedRoute {
   route_id: string
-  route_name: string
+  route_name?: string
+  route_name_zh?: string
+  total_score?: number
   units: RouteUnit[]
 }
 

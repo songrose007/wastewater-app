@@ -4,6 +4,31 @@ import { api } from '../services/api'
 import type { ProcessRoute, SelectedRoute } from '../types'
 import LoadingSpinner from '../components/LoadingSpinner'
 
+interface ProcessSelectionResult {
+  routes?: ProcessRoute[]
+  recommendations?: ProcessRoute[]
+}
+
+function getRouteId(route: ProcessRoute): string {
+  return route.route_id || route.id || route.template_id || ''
+}
+
+function getRouteName(route: ProcessRoute): string {
+  return route.route_name_zh || route.name_zh || route.name || route.route_id || '未命名工艺路线'
+}
+
+function getRouteScore(route: ProcessRoute): number {
+  return route.total_score ?? route.score ?? 0
+}
+
+function getRouteReasons(route: ProcessRoute): string[] {
+  return route.suitability_reasons || route.reasons || []
+}
+
+function isMandatoryUnit(unit: ProcessRoute['units'][number]): boolean {
+  return unit.is_mandatory ?? unit.mandatory ?? true
+}
+
 export default function ProcessSelectionPage() {
   const { id } = useParams<{ id: string }>()
   const navigate = useNavigate()
@@ -33,8 +58,8 @@ export default function ProcessSelectionPage() {
     setAnalyzing(true)
     setError('')
     try {
-      const result = await api.selectProcess(id) as { routes: ProcessRoute[] }
-      setRoutes(result.routes || [])
+      const result = await api.selectProcess(id) as ProcessSelectionResult
+      setRoutes(result.routes || result.recommendations || [])
     } catch (e) {
       setError((e as Error).message || '工艺分析失败')
     } finally {
@@ -44,6 +69,10 @@ export default function ProcessSelectionPage() {
 
   const handleConfirm = async (routeId: string) => {
     if (!id) return
+    if (!routeId) {
+      setError('工艺路线数据缺失，请重新运行推荐')
+      return
+    }
     setConfirming(true)
     setError('')
     try {
@@ -94,9 +123,11 @@ export default function ProcessSelectionPage() {
             </svg>
             <span className="font-semibold text-green-700">已确认工艺路线</span>
           </div>
-          <h2 className="text-lg font-bold text-gray-900 mb-3">{selected.route_name}</h2>
+          <h2 className="text-lg font-bold text-gray-900 mb-3">
+            {selected.route_name || selected.route_name_zh || selected.route_id}
+          </h2>
           <div className="flex flex-wrap gap-2">
-            {selected.units.map((unit, i) => (
+            {(selected.units || []).map((unit, i) => (
               <span key={unit.unit_code} className="inline-flex items-center gap-1 px-3 py-1.5 bg-primary/5 text-primary text-sm rounded-full">
                 <span className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center text-xs font-bold">
                   {i + 1}
@@ -118,32 +149,34 @@ export default function ProcessSelectionPage() {
 
       {!selected && routes.length > 0 && (
         <div className="space-y-4">
-          {routes.map((route, idx) => (
-            <div
-              key={route.id || route.template_id}
-              className="bg-white rounded-xl border border-gray-200 p-6 hover:border-primary/30 hover:shadow-sm transition-all"
-            >
+          {routes.map((route, idx) => {
+            const routeId = getRouteId(route)
+            return (
+              <div
+                key={routeId || `route-${idx}`}
+                className="bg-white rounded-xl border border-gray-200 p-6 hover:border-primary/30 hover:shadow-sm transition-all"
+              >
               <div className="flex items-start justify-between mb-3">
                 <div>
                   <div className="flex items-center gap-2">
                     {idx === 0 && (
                       <span className="text-xs px-2 py-0.5 bg-amber-100 text-amber-700 rounded-full">推荐</span>
                     )}
-                    <h3 className="text-lg font-semibold text-gray-900">{route.name_zh}</h3>
+                    <h3 className="text-lg font-semibold text-gray-900">{getRouteName(route)}</h3>
                   </div>
-                  <p className="text-sm text-gray-500 mt-0.5">{route.name}</p>
+                  <p className="text-sm text-gray-500 mt-0.5">{routeId || '路线编号缺失'}</p>
                 </div>
                 <div className="text-right">
-                  <div className="text-2xl font-bold text-primary">{route.score}</div>
+                  <div className="text-2xl font-bold text-primary">{getRouteScore(route)}</div>
                   <div className="text-xs text-gray-400">评分</div>
                 </div>
               </div>
 
-              {route.reasons.length > 0 && (
+              {getRouteReasons(route).length > 0 && (
                 <div className="mb-3">
                   <h4 className="text-xs font-medium text-gray-500 mb-1">推荐理由</h4>
                   <ul className="space-y-0.5">
-                    {route.reasons.map((r, i) => (
+                    {getRouteReasons(route).map((r, i) => (
                       <li key={i} className="text-sm text-gray-600 flex items-start gap-1.5">
                         <span className="text-green-500 mt-0.5">+</span>
                         {r}
@@ -153,11 +186,11 @@ export default function ProcessSelectionPage() {
                 </div>
               )}
 
-              {route.risks.length > 0 && (
+              {(route.risks || []).length > 0 && (
                 <div className="mb-3">
                   <h4 className="text-xs font-medium text-gray-500 mb-1">注意事项</h4>
                   <ul className="space-y-0.5">
-                    {route.risks.map((r, i) => (
+                    {(route.risks || []).map((r, i) => (
                       <li key={i} className="text-sm text-amber-600 flex items-start gap-1.5">
                         <span className="text-amber-500 mt-0.5">!</span>
                         {r}
@@ -170,18 +203,18 @@ export default function ProcessSelectionPage() {
               <div>
                 <h4 className="text-xs font-medium text-gray-500 mb-1.5">处理单元</h4>
                 <div className="flex flex-wrap gap-1.5">
-                  {route.units.map((unit, i) => (
+                  {(route.units || []).map((unit, i) => (
                     <span
                       key={unit.unit_code}
                       className={`inline-flex items-center gap-1 px-2.5 py-1 text-xs rounded-full ${
-                        unit.mandatory
+                        isMandatoryUnit(unit)
                           ? 'bg-primary/10 text-primary'
                           : 'bg-gray-100 text-gray-500'
                       }`}
                     >
                       <span className="font-mono text-[10px]">{i + 1}</span>
                       {unit.unit_name_zh}
-                      {unit.mandatory && <span className="text-[10px] opacity-60">必需</span>}
+                      {isMandatoryUnit(unit) && <span className="text-[10px] opacity-60">必需</span>}
                     </span>
                   ))}
                 </div>
@@ -189,15 +222,16 @@ export default function ProcessSelectionPage() {
 
               <div className="mt-4 pt-3 border-t border-gray-100">
                 <button
-                  onClick={() => handleConfirm(route.id || route.template_id)}
-                  disabled={confirming}
+                  onClick={() => handleConfirm(routeId)}
+                  disabled={confirming || !routeId}
                   className="px-4 py-1.5 bg-primary text-white text-sm rounded-lg hover:bg-primary-light transition-colors disabled:opacity-50"
                 >
                   {confirming ? '确认中...' : '确认工艺路线'}
                 </button>
               </div>
-            </div>
-          ))}
+              </div>
+            )
+          })}
         </div>
       )}
     </div>
